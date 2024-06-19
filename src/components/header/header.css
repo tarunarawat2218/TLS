@@ -1,0 +1,20 @@
+.slick-prev:before,
+.slick-next:before {
+    color: black;
+}
+
+.slick-slide img {
+    display: inline-block;
+    margin: auto;
+}
+
+.tp-brand__item {
+    padding: 10px;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    .tp-brand__item img {
+        max-width: 80%;
+    }
+}
