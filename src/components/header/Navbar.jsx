@@ -1,13 +1,19 @@
 import React from 'react';
-import { AppBar, Menu, MenuItem, Toolbar, Typography, Button, ListItemIcon } from '@mui/material';
+import { AppBar, Menu, MenuItem, Toolbar, Typography, Button,Drawer, IconButton, Avatar, List, ListItem, ListItemText, ListItemIcon } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { Link } from 'react-router-dom';
-
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const Navbar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [subAnchorEl, setSubAnchorEl] = React.useState(null);
   const [subAnchorEl2, setSubAnchorEl2] = React.useState(null);
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const open = Boolean(anchorEl);
   const subOpen = Boolean(subAnchorEl);
@@ -39,76 +45,172 @@ const Navbar = () => {
     setSubAnchorEl2(null);
   };
 
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+
+  const drawer = (
+    <div>
+      <List>
+        <ListItem button component={Link} to="/education" onClick={handleDrawerToggle}>
+          <ListItemText primary="Education" />
+        </ListItem>
+        <List component="div" disablePadding>
+          <ListItem button component={Link} to="/underGraduate" onClick={handleDrawerToggle}>
+            <ListItemIcon>
+              <ArrowRightIcon />
+            </ListItemIcon>
+            <ListItemText primary="Undergraduate" />
+          </ListItem>
+          <ListItem button component={Link} to="/postGraduate" onClick={handleDrawerToggle}>
+            <ListItemIcon>
+              <ArrowRightIcon />
+            </ListItemIcon>
+            <ListItemText primary="Postgraduate" />
+          </ListItem>
+        </List>
+        <ListItem button component={Link} to="/online-certification" onClick={handleDrawerToggle}>
+          <ListItemText primary="Online Certification" />
+        </ListItem>
+        <List component="div" disablePadding>
+          <ListItem button component={Link} to="/all-courses" onClick={handleDrawerToggle}>
+            <ListItemIcon>
+              <ArrowRightIcon />
+            </ListItemIcon>
+            <ListItemText primary="Short Term Cert." />
+          </ListItem>
+          <ListItem button component={Link} to="/long-term-courses" onClick={handleDrawerToggle}>
+            <ListItemIcon>
+              <ArrowRightIcon />
+            </ListItemIcon>
+            <ListItemText primary="Long Term Cert." />
+          </ListItem>
+        </List>
+        <ListItem button component={Link} to="/internship" onClick={handleDrawerToggle}>
+          <ListItemText primary="Internship" />
+        </ListItem>
+        <ListItem button component={Link} to="/mdp-f" onClick={handleDrawerToggle}>
+          <ListItemText primary="MDP/FDC" />
+        </ListItem>
+        <ListItem button component={Link} to="/industrial-workshop" onClick={handleDrawerToggle}>
+          <ListItemText primary="Industrial Workshops" />
+        </ListItem>
+        <ListItem button component={Link} to="/university" onClick={handleDrawerToggle}>
+          <ListItemText primary="University Partnership" />
+        </ListItem>
+        <ListItem button component={Link} to="/vocational-education" onClick={handleDrawerToggle}>
+          <ListItemText primary="Vocational Education" />
+        </ListItem>
+        <ListItem button component={Link} to="/corporate-connect" onClick={handleDrawerToggle}>
+          <ListItemText primary="Corporate Connect" />
+        </ListItem>
+        <ListItem button component={Link} to="/skilling-enterprise-solution" onClick={handleDrawerToggle}>
+          <ListItemText primary="Skilling & Enterprise Solution" />
+        </ListItem>
+      </List>
+    </div>
+  );
+
   return (
-    <AppBar position="static" sx={{ backgroundColor: '#333f59' }}>
+    <AppBar position="static" sx={{ backgroundColor: '#003285' }}>
       <Toolbar>
-        <Typography variant="h6" sx={{ flexGrow: 1 }}>
-          LOGO
-        </Typography>
-        <div>
-          <Button color="inherit" onClick={handleClick}>Education</Button>
-          <Menu
-            id="basic-menu"
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose}
-            MenuListProps={{
-              'aria-labelledby': 'basic-button',
-            }}
-          >
-            <MenuItem
-              onMouseEnter={handleSubClick}
-              onMouseLeave={handleSubClose}
-              onClick={(event) => event.stopPropagation()}
+        {isMobile ? (
+          <>
+            <IconButton
+              color="inherit"
+              edge="start"
+              onClick={handleDrawerToggle}
+              sx={{ mr: 2 }}
             >
-              Admission
-              <ListItemIcon>
-                <ArrowRightIcon fontSize="small" />
-              </ListItemIcon>
-              <Menu
-                id="sub-menu"
-                anchorEl={subAnchorEl}
-                open={subOpen}
-                onClose={handleSubClose}
-                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-                transformOrigin={{ vertical: 'top', horizontal: 'left' }}
-              >
-                <MenuItem onClick={handleClose} component={Link} to="/underGraduate">Undergraduate</MenuItem>
-                <MenuItem onClick={handleClose} component={Link} to="/postGraduate">Postgraduate</MenuItem>
-              </Menu>
-            </MenuItem>
-
-            <MenuItem
-              onMouseEnter={handleSubClick2}
-              onMouseLeave={handleSubClose2}
-              onClick={(event) => event.stopPropagation()}
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" sx={{ flexGrow: 1 }}>
+              LOGO
+            </Typography>
+            <Avatar sx={{ bgcolor: 'white', color: '#003285' }}>T</Avatar>
+            <Drawer
+              anchor="left"
+              open={mobileOpen}
+              onClose={handleDrawerToggle}
+              ModalProps={{
+                keepMounted: true, // Better open performance on mobile.
+              }}
             >
-              Online Certification
-              <ListItemIcon>
-                <ArrowRightIcon fontSize="small" />
-              </ListItemIcon>
+              {drawer}
+            </Drawer>
+          </>
+        ) : (
+          <>
+            <Typography variant="h6" sx={{ flexGrow: 1 }}>
+              LOGO
+            </Typography>
+            <div>
+              <Button color="inherit" onClick={handleClick}>Education</Button>
               <Menu
-                id="sub-menu2"
-                anchorEl={subAnchorEl2}
-                open={subOpen2}
-                onClose={handleSubClose2}
-                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-                transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+                id="basic-menu"
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                MenuListProps={{
+                  'aria-labelledby': 'basic-button',
+                }}
               >
-                <MenuItem onClick={handleClose} component={Link} to="/all-courses">Short Term Cert.</MenuItem>
-                <MenuItem onClick={handleClose} component={Link} to="/long-term-courses">Long Term Cert.</MenuItem>
-              </Menu>
-            </MenuItem>
+                <MenuItem
+                  onMouseEnter={handleSubClick}
+                  onMouseLeave={handleSubClose}
+                  onClick={(event) => event.stopPropagation()}
+                >
+                  Admission
+                  <ListItemIcon>
+                    <ArrowRightIcon fontSize="small" />
+                  </ListItemIcon>
+                  <Menu
+                    id="sub-menu"
+                    anchorEl={subAnchorEl}
+                    open={subOpen}
+                    onClose={handleSubClose}
+                    anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                    transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+                  >
+                    <MenuItem onClick={handleClose} component={Link} to="/underGraduate">Undergraduate</MenuItem>
+                    <MenuItem onClick={handleClose} component={Link} to="/postGraduate">Postgraduate</MenuItem>
+                  </Menu>
+                </MenuItem>
 
-            <MenuItem onClick={handleClose} component={Link} to="/internship" >Internship</MenuItem>
-            <MenuItem onClick={handleClose} component={Link} to="/mdp-f">MDP/FDC</MenuItem>
-            <MenuItem onClick={handleClose} component={Link} to="/industrial-workshop">Industrial Workshops</MenuItem>
-            <MenuItem onClick={handleClose} component={Link} to="/university" >University Partnership</MenuItem>
-          </Menu>
-        </div>
-        <Button color="inherit">Vocational Education </Button>
-        <Button color="inherit">Corporate Connect</Button>
-        <Button color="inherit">Skilling & Enterprise Solution</Button>
+                <MenuItem
+                  onMouseEnter={handleSubClick2}
+                  onMouseLeave={handleSubClose2}
+                  onClick={(event) => event.stopPropagation()}
+                >
+                  Online Certification
+                  <ListItemIcon>
+                    <ArrowRightIcon fontSize="small" />
+                  </ListItemIcon>
+                  <Menu
+                    id="sub-menu2"
+                    anchorEl={subAnchorEl2}
+                    open={subOpen2}
+                    onClose={handleSubClose2}
+                    anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                    transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+                  >
+                    <MenuItem onClick={handleClose} component={Link} to="/all-courses">Short Term Cert.</MenuItem>
+                    <MenuItem onClick={handleClose} component={Link} to="/long-term-courses">Long Term Cert.</MenuItem>
+                  </Menu>
+                </MenuItem>
+
+                <MenuItem onClick={handleClose} component={Link} to="/internship">Internship</MenuItem>
+                <MenuItem onClick={handleClose} component={Link} to="/mdp-f">MDP/FDC</MenuItem>
+                <MenuItem onClick={handleClose} component={Link} to="/industrial-workshop">Industrial Workshops</MenuItem>
+                <MenuItem onClick={handleClose} component={Link} to="/university">University Partnership</MenuItem>
+              </Menu>
+            </div>
+            <Button color="inherit">Vocational Education</Button>
+            <Button color="inherit">Corporate Connect</Button>
+            <Button color="inherit">Skilling & Enterprise Solution</Button>
+            <Avatar sx={{ bgcolor: 'white', color: '#003285', ml: 2 }}>T</Avatar>
+          </>
+        )}
       </Toolbar>
     </AppBar>
   );

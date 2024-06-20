@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, TextField, Container } from '@mui/material';
+import { Box, TextField, Container,Typography } from '@mui/material';
 import FilterSidebar from './FilterSidebar';
 import CollegeList from './CollegeList';
 import Navbar from '../header/Navbar';
@@ -41,7 +41,34 @@ const PostGraduate = () => {
   return (
     <Box>
       <Navbar />
-      <Banner />
+      <Box
+      sx={{
+        width: '100%',
+        height: '400px',
+        backgroundColor: '#EEF7FF', // Replace with your image URL
+        color:'white',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+       <Typography variant="h2" sx={{ color: 'black' }}>
+        Welcome to Our Colleges
+      </Typography>
+
+       <dotlottie-player
+    src="https://lottie.host/b3680b00-4774-45ec-b6eb-32a6582867fe/8CRTLrjwSX.json"
+    background="transparent"
+    speed="1"
+    style={{ width: '450px', height: '450px', marginLeft:'15rem' }}
+    loop
+    autoplay
+  ></dotlottie-player>
+
+     
+    </Box>
     <Container>
       {/* <CollegeHeader /> */}
       <Box sx={{ display: 'flex', marginTop: 3, marginLeft:-40 }}>

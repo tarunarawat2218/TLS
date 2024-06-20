@@ -52,8 +52,8 @@ return (
 <Box
       sx={{
         width: '100%',
-        height: '300px',
-        backgroundColor: '#333f59', // Replace with your image URL
+        height: '400px',
+        backgroundColor: '#EEF7FF', // Replace with your image URL
         color:'white',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
@@ -62,9 +62,20 @@ return (
         justifyContent: 'center',
       }}
     >
-      <Typography variant="h2" sx={{ color: 'white' }}>
-        Welcome to Our Cousres
+       <Typography variant="h2" sx={{ color: 'black' }}>
+        Welcome to Our Courses
       </Typography>
+
+       <dotlottie-player
+    src="https://lottie.host/e4ce24ca-5108-4fe5-bd85-e25096f4125a/bDuRIjyOdk.json"
+    background="transparent"
+    speed="1"
+    style={{ width: '400px', height: '400px', marginLeft:'15rem' }}
+    loop
+    autoplay
+  ></dotlottie-player>
+
+     
     </Box>
 <Container>
 <Typography variant="h4" gutterBottom>

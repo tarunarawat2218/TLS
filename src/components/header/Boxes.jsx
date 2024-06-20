@@ -7,13 +7,11 @@ const colors = ['#FFA500', '#1E90FF', '#FF4500', '#006400', '#32CD32', '#800080'
 
 const FeatureItem = styled(Paper)(({ theme }) => ({
   position: 'relative',
-  padding: theme.spacing(4), // Adjust the padding here
+  padding: theme.spacing(4),
   justifyContent: 'center',
-  marginLeft: '5rem',
   textAlign: 'center',
   width: '20rem',
-  minHeight: '200px', // Ensure all boxes have the same height
-  marginBottom: '1px', // Reduce space between boxes
+  minHeight: '200px',
   transition: 'transform 0.3s ease',
 
   '&:hover': {
@@ -32,14 +30,13 @@ const FeatureItem = styled(Paper)(({ theme }) => ({
   },
 }));
 
-
 const FeaturedTopics = () => {
   const topics = [
-    { icon: 'https://data.themeim.com/html/tutorgo/assets/img/icons/design-icon.png', title: 'Design', link: 'course.html' },
+    // { icon: 'https://data.themeim.com/html/tutorgo/assets/img/icons/design-icon.png', title: 'Design', link: 'course.html' },
     { icon: 'https://data.themeim.com/html/tutorgo/assets/img/icons/man-cions.png', title: 'Management', link: 'course.html' },
     { icon: 'https://data.themeim.com/html/tutorgo/assets/img/icons/code-cions.png', title: 'Programming', link: 'course.html' },
     { icon: 'https://data.themeim.com/html/tutorgo/assets/img/icons/bag-icon.png', title: 'Business', link: 'course.html' },
-    { icon: 'https://data.themeim.com/html/tutorgo/assets/img/icons/music-icons.png', title: 'Audio + Music', link: 'course.html' },
+    // { icon: 'https://data.themeim.com/html/tutorgo/assets/img/icons/music-icons.png', title: 'Audio + Music', link: 'course.html' },
     { icon: 'https://data.themeim.com/html/tutorgo/assets/img/icons/doller-icon.png', title: 'Finance', link: 'course.html' },
     { icon: 'https://data.themeim.com/html/tutorgo/assets/img/icons/cal-icon.png', title: 'Accounting', link: 'course.html' },
     { icon: 'https://data.themeim.com/html/tutorgo/assets/img/icons/pen-icon.png', title: 'Content Writing', link: 'course.html' },
@@ -47,11 +44,12 @@ const FeaturedTopics = () => {
 
   return (
     <Box className="tp-feature__section pt-120 pb-30">
-        <Typography variant='h4' alignItems="center" ml='38rem' mb="2rem" >Popular Topic, Which are Most Favourite To Students</Typography>
+      <Typography variant='h4' align="center" mb="2rem">
+        Popular Topic, Which are Most Favourite To Students
+      </Typography>
       <Grid container spacing={3} justifyContent="center">
         {topics.map((topic, index) => (
-          <Grid item xs={12} sm={6} md={4} lg={3} key={index} sx={{ margin: '0.5rem' }}>
-
+          <Grid item xs={12} sm={6} md={3} key={index} sx={{ margin: '0.5rem' }}>
             <FeatureItem
               elevation={3}
               sx={{
