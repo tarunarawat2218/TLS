@@ -40,7 +40,7 @@ const PostGraduate = () => {
 
   return (
     <Box>
-      <Navbar />
+       <Navbar backgroundColor="#EEF7FF" color='black' />
       <Box
       sx={{
         width: '100%',

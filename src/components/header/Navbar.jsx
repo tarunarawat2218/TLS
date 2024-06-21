@@ -1,12 +1,12 @@
 import React from 'react';
-import { AppBar, Menu, MenuItem, Toolbar, Typography, Button,Drawer, IconButton, Avatar, List, ListItem, ListItemText, ListItemIcon } from '@mui/material';
+import { AppBar, Menu, MenuItem, Toolbar, Typography, Button, Drawer, IconButton, Avatar, List, ListItem, ListItemText, ListItemIcon } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { Link } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-const Navbar = () => {
+const Navbar = ({ backgroundColor, color }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [subAnchorEl, setSubAnchorEl] = React.useState(null);
   const [subAnchorEl2, setSubAnchorEl2] = React.useState(null);
@@ -112,7 +112,7 @@ const Navbar = () => {
   );
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: '#003285' }}>
+    <AppBar position="static" sx={{ backgroundColor: backgroundColor || '#003285', color: color || 'white' }}>
       <Toolbar>
         {isMobile ? (
           <>
@@ -125,7 +125,7 @@ const Navbar = () => {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" sx={{ flexGrow: 1 }}>
-              LOGO
+              <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>LOGO</Link>
             </Typography>
             <Avatar sx={{ bgcolor: 'white', color: '#003285' }}>T</Avatar>
             <Drawer
@@ -142,7 +142,7 @@ const Navbar = () => {
         ) : (
           <>
             <Typography variant="h6" sx={{ flexGrow: 1 }}>
-              LOGO
+              <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>LOGO</Link>
             </Typography>
             <div>
               <Button color="inherit" onClick={handleClick}>Education</Button>

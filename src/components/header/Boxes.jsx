@@ -32,14 +32,12 @@ const FeatureItem = styled(Paper)(({ theme }) => ({
 
 const FeaturedTopics = () => {
   const topics = [
-    // { icon: 'https://data.themeim.com/html/tutorgo/assets/img/icons/design-icon.png', title: 'Design', link: 'course.html' },
-    { icon: 'https://data.themeim.com/html/tutorgo/assets/img/icons/man-cions.png', title: 'Management', link: 'course.html' },
-    { icon: 'https://data.themeim.com/html/tutorgo/assets/img/icons/code-cions.png', title: 'Programming', link: 'course.html' },
-    { icon: 'https://data.themeim.com/html/tutorgo/assets/img/icons/bag-icon.png', title: 'Business', link: 'course.html' },
-    // { icon: 'https://data.themeim.com/html/tutorgo/assets/img/icons/music-icons.png', title: 'Audio + Music', link: 'course.html' },
-    { icon: 'https://data.themeim.com/html/tutorgo/assets/img/icons/doller-icon.png', title: 'Finance', link: 'course.html' },
-    { icon: 'https://data.themeim.com/html/tutorgo/assets/img/icons/cal-icon.png', title: 'Accounting', link: 'course.html' },
-    { icon: 'https://data.themeim.com/html/tutorgo/assets/img/icons/pen-icon.png', title: 'Content Writing', link: 'course.html' },
+    { icon: 'https://data.themeim.com/html/tutorgo/assets/img/icons/man-cions.png', title: 'Management', link: '/management' },
+    { icon: 'https://data.themeim.com/html/tutorgo/assets/img/icons/code-cions.png', title: 'Programming', link: '/programming' },
+    { icon: 'https://data.themeim.com/html/tutorgo/assets/img/icons/bag-icon.png', title: 'Business', link: '/business' },
+    { icon: 'https://data.themeim.com/html/tutorgo/assets/img/icons/doller-icon.png', title: 'Finance', link: '/finance' },
+    { icon: 'https://data.themeim.com/html/tutorgo/assets/img/icons/cal-icon.png', title: 'Accounting', link: '/accounting' },
+    { icon: 'https://data.themeim.com/html/tutorgo/assets/img/icons/pen-icon.png', title: 'Content Writing', link: '/content-writing' },
   ];
 
   return (
@@ -50,22 +48,22 @@ const FeaturedTopics = () => {
       <Grid container spacing={3} justifyContent="center">
         {topics.map((topic, index) => (
           <Grid item xs={12} sm={6} md={3} key={index} sx={{ margin: '0.5rem' }}>
-            <FeatureItem
-              elevation={3}
-              sx={{
-                '&:hover:before': {
-                  backgroundColor: colors[index % colors.length],
-                },
-              }}
-            >
-              <img src={topic.icon} alt={topic.title} style={{ width: '40px', marginBottom: '20px' }} />
-              <Typography variant="h6" component="h3" sx={{ fontWeight: 'bold', mb: 1 }}>
-                <Link to={topic.link} style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Link to={topic.link} style={{ textDecoration: 'none' }}>
+              <FeatureItem
+                elevation={3}
+                sx={{
+                  '&:hover:before': {
+                    backgroundColor: colors[index % colors.length],
+                  },
+                }}
+              >
+                <img src={topic.icon} alt={topic.title} style={{ width: '40px', marginBottom: '20px' }} />
+                <Typography variant="h6" component="h3" sx={{ fontWeight: 'bold', mb: 1, color: 'inherit' }}>
                   {topic.title}
-                </Link>
-              </Typography>
-              <Typography variant="body2">400+ Course</Typography>
-            </FeatureItem>
+                </Typography>
+                <Typography variant="body2">400+ Course</Typography>
+              </FeatureItem>
+            </Link>
           </Grid>
         ))}
       </Grid>
