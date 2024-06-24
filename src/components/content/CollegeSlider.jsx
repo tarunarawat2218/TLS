@@ -47,7 +47,7 @@ const CollegesSlider = () => {
   return (
     <Container>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 4, mt:10 }}>
-        <Typography variant="h4">Colleges</Typography>
+        <Typography variant="h4" fontWeight='bold'>Colleges</Typography>
         <Button variant="contained" component={Link} to="/underGraduate">View All Colleges</Button>
       </Box>
       <Grid container spacing={4}>

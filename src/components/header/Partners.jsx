@@ -40,20 +40,20 @@ const Partners = () => {
         slidesToShow: isMobile ? 1 : 5,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 2000, // Adjust autoplay speed as needed
-        arrows: false, // Hide arrows
+        autoplaySpeed: 2000,
+        arrows: false,
         responsive: [
             {
                 breakpoint: 1024,
                 settings: {
-                    slidesToShow: isMobile ? 2 : 3,
+                    slidesToShow: 3,
                     slidesToScroll: 1,
                 },
             },
             {
                 breakpoint: 600,
                 settings: {
-                    slidesToShow: isMobile ? 1 : 2,
+                    slidesToShow: 1,
                     slidesToScroll: 1,
                 },
             },
@@ -62,21 +62,18 @@ const Partners = () => {
 
     return (
         <Box
-            position="relative"
-            top="-10vh" // Adjust this value as needed to position above the navbar
-            left="14%"
-            transform="translate(-50%, 0)"
-            width="90%"
+            className="fly-in"
+            width="70%"
             maxWidth="1500px"
             bgcolor="white"
             borderRadius="8px"
             boxShadow="0px 0px 10px rgba(0, 0, 0, 0.1)"
             p={2}
-            zIndex="10" // Ensure it stays on top
-            mt={isMobile ? 2 : 0} // Add margin top for mobile view
+            zIndex="10"
+            mt={isMobile ? 2 : 0}
         >
-            <Grid container spacing={2} >
-                <Grid item xs={12} md={4} marginLeft={'5rem'}>
+            <Grid container spacing={2}>
+                <Grid item xs={12} md={4}>
                     <Typography variant="h4" className="header-title">The Learn Skill</Typography>
                     <Typography>Join over 1490+ partners around the world</Typography>
                 </Grid>
@@ -86,7 +83,7 @@ const Partners = () => {
                 </Grid>
             </Grid>
             <Box mt={2}>
-                <Slider {...settings} style={{ height: '100px', marginTop:"2rem" }}> {/* Adjust height as needed */}
+                <Slider {...settings} style={{ height: '100px', marginTop: "2rem" }}>
                     {features.map((feature, index) => (
                         <Box key={index} className="tp-brand__item">
                             <img src={feature.image} alt={feature.title} style={{ maxWidth: '100%', height: '100%' }} />

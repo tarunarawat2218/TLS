@@ -3,6 +3,12 @@ import { Box, Grid, Typography, Button } from '@mui/material';
 import { useSpring, animated } from '@react-spring/web';
 
 const Banner = () => {
+  const textAnimation = useSpring({
+    from: { transform: 'translateY(100px)', opacity: 0 },
+    to: { transform: 'translateY(0px)', opacity: 1 },
+    config: { duration: 1000 },
+  });
+
   const floatingAnimation1 = useSpring({
     loop: true,
     from: { transform: 'translateY(0px)' },
@@ -87,44 +93,46 @@ const Banner = () => {
           md={6}
           sx={{ textAlign: { xs: 'center', md: 'left' }, px: { xs: 2, md: 3 } }}
         >
-          <Typography
-            variant="h3"
-            component="h1"
-            sx={{ mt: { xs: 2, md: 22 }, ml: { xs: 2, md: 22 } }}
-          >
-            Benefit From Our Online Learning Expertise
-          </Typography>
-          <Typography
-            variant="h6"
-            component="h2"
-            sx={{ mb: 4, mt: { xs: 2, md: 5 }, ml: { xs: 2, md: 22 } }}
-          >
-            Earn professional certifications and boost your career.
-          </Typography>
-          <Typography
-            variant="body1"
-            component="p"
-            sx={{ mb: 4, ml: { xs: 2, md: 22 } }}
-          >
-            Lorem ipsum dolor sit amet, consectetur aliqua adipiscing elit, sed do
-            eiumod tempor.
-          </Typography>
-          <Button variant="contained" sx={{ ml: { xs: 2, md: 22 } }}>
-            Explore Courses
-          </Button>
+          <animated.div style={textAnimation}>
+            <Typography
+              variant="h2"
+              component="h1"
+              fontWeight="bold"
+              sx={{ mt: { xs: 2, md: 2 }, ml: { xs: 2, md: 22 } }}
+            >
+              <span style={{ color: 'white' }}>Your success journey starts with us</span>
+            </Typography>
+            <Typography
+              variant="h6"
+              component="h2"
+              sx={{ mb: 4, mt: { xs: 2, md: 5 }, ml: { xs: 2, md: 22 } }}
+            >
+              Empowering career through skillful education journey
+            </Typography>
+            <Typography
+              variant="body1"
+              component="p"
+              sx={{ mb: 4, ml: { xs: 2, md: 22 } }}
+            >
+              {/* Optional additional text can go here */}
+            </Typography>
+            <Button variant="contained" sx={{ ml: { xs: 2, md: 22 } }}>
+              Explore Courses
+            </Button>
+          </animated.div>
         </Grid>
 
         <Grid
           item
           xs={12}
           md={6}
-          sx={{ display: 'flex', justifyContent: { xs: 'center', md: 'flex-mid' } }}
+          sx={{ display: 'flex', justifyContent: { xs: 'center', md: 'flex-end' } }}
         >
           <Box
             component="img"
             src="https://data.themeim.com/html/tutorgo/assets/img/hero/hero-img-1.png"
             alt="Online Learning"
-            sx={{ width: '100%', maxWidth: '650px', height: '50rem', backgroundImage: "url(https://data.themeim.com/html/tutorgo/assets/img/icons/line-shape.png)" }}
+            sx={{ width: '100%', maxWidth: { xs: '300px', md: '650px' }, height: 'auto', backgroundImage: "url(https://data.themeim.com/html/tutorgo/assets/img/icons/line-shape.png)" }}
           />
         </Grid>
       </Grid>

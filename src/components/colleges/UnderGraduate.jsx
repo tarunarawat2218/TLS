@@ -4,7 +4,9 @@ import FilterSidebar from './FilterSidebar';
 import CollegeList from './CollegeList';
 import Navbar from '../header/Navbar'
 import Banner from '../header/Banner'
+import Footer from '../footer/Footer';
 // import CollegeHeader from './CollegeHeader';
+
 
 const collegesData = [
   { id: 1, name: 'MGM College', location: 'Lucknow', course: 'Course1', fees: '10000', package: '5 LPA', image: 'https://images.livemint.com/img/2021/07/29/600x338/b5af6ee0-ed4d-11eb-a043-f8aaa01a1d1e_1627242083337_1627556687642.jpg' },
@@ -40,12 +42,12 @@ const UnderGraduate = () => {
 
   return (
   <Box>
-      <Navbar/>
+     <Navbar />
       <Box
       sx={{
         width: '100%',
-        height: '400px',
-        backgroundColor: '#EEF7FF', // Replace with your image URL
+        height: '200px',
+        backgroundColor: '#003285', // Replace with your image URL
         color:'white',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
@@ -54,15 +56,15 @@ const UnderGraduate = () => {
         justifyContent: 'center',
       }}
     >
-       <Typography variant="h2" sx={{ color: 'black' }}>
-        Welcome to Our Colleges
+       <Typography variant="h2" sx={{ color: 'white', fontWeight:'bold' }}>
+        Universities
       </Typography>
 
        <dotlottie-player
     src="https://lottie.host/b3680b00-4774-45ec-b6eb-32a6582867fe/8CRTLrjwSX.json"
     background="transparent"
     speed="1"
-    style={{ width: '450px', height: '450px', marginLeft:'15rem' }}
+    style={{ width: '200px', height: '200px', marginLeft:'15rem' }}
     loop
     autoplay
   ></dotlottie-player>
@@ -70,7 +72,7 @@ const UnderGraduate = () => {
      
     </Box>
     <Container>
-      <Box sx={{ display: 'flex', marginTop: 3, marginLeft:-40 }}>
+      <Box sx={{ display: 'flex', marginTop: 3, marginLeft:-25 }}>
         <FilterSidebar filters={filters} handleFilterChange={handleFilterChange} />
         <Box sx={{ flexGrow: 1, marginLeft: 3 }}>
           {/* <TextField
@@ -83,6 +85,7 @@ const UnderGraduate = () => {
         </Box>
       </Box>
     </Container>
+    <Footer/>
     </Box>
   );
 };

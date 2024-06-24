@@ -4,6 +4,7 @@ import FilterSidebar from './FilterSidebar';
 import CollegeList from './CollegeList';
 import Navbar from '../header/Navbar';
 import Banner from '../header/Banner';
+import Footer from '../footer/Footer';
 // import CollegeHeader from './CollegeHeader';
 
 const collegesData = [
@@ -55,7 +56,7 @@ const PostGraduate = () => {
       }}
     >
        <Typography variant="h2" sx={{ color: 'black' }}>
-        Welcome to Our Colleges
+      Postgraduate Colleges
       </Typography>
 
        <dotlottie-player
@@ -71,7 +72,7 @@ const PostGraduate = () => {
     </Box>
     <Container>
       {/* <CollegeHeader /> */}
-      <Box sx={{ display: 'flex', marginTop: 3, marginLeft:-40 }}>
+      <Box sx={{ display: 'flex', marginTop: 3, marginLeft:-25 }}>
         <FilterSidebar filters={filters} handleFilterChange={handleFilterChange} />
         <Box sx={{ flexGrow: 1, marginLeft: 3 }}>
           {/* <TextField
@@ -84,6 +85,7 @@ const PostGraduate = () => {
         </Box>
       </Box>
     </Container>
+    <Footer/>
     </Box>
   );
 };

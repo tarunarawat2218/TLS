@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
+
+
 const Navbar = ({ backgroundColor, color }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [subAnchorEl, setSubAnchorEl] = React.useState(null);
@@ -52,7 +54,7 @@ const Navbar = ({ backgroundColor, color }) => {
   const drawer = (
     <div>
       <List>
-        <ListItem button component={Link} to="/education" onClick={handleDrawerToggle}>
+        <ListItem button  onClick={handleDrawerToggle}>
           <ListItemText primary="Education" />
         </ListItem>
         <List component="div" disablePadding>
@@ -60,14 +62,14 @@ const Navbar = ({ backgroundColor, color }) => {
             <ListItemIcon>
               <ArrowRightIcon />
             </ListItemIcon>
-            <ListItemText primary="Undergraduate" />
+            <ListItemText primary="University Admission" />
           </ListItem>
-          <ListItem button component={Link} to="/postGraduate" onClick={handleDrawerToggle}>
+          {/* <ListItem button component={Link} to="/postGraduate" onClick={handleDrawerToggle}>
             <ListItemIcon>
               <ArrowRightIcon />
             </ListItemIcon>
             <ListItemText primary="Postgraduate" />
-          </ListItem>
+          </ListItem> */}
         </List>
         <ListItem button component={Link} to="/online-certification" onClick={handleDrawerToggle}>
           <ListItemText primary="Online Certification" />
@@ -151,17 +153,22 @@ const Navbar = ({ backgroundColor, color }) => {
                 anchorEl={anchorEl}
                 open={open}
                 onClose={handleClose}
+                // fontWeight='bold'
                 MenuListProps={{
                   'aria-labelledby': 'basic-button',
                 }}
+                
               >
                 <MenuItem
                   onMouseEnter={handleSubClick}
                   onMouseLeave={handleSubClose}
+                  component={Link} to="/underGraduate"
                   onClick={(event) => event.stopPropagation()}
+                  
+
                 >
-                  Admission
-                  <ListItemIcon>
+                  University Admission
+                  {/* <ListItemIcon>
                     <ArrowRightIcon fontSize="small" />
                   </ListItemIcon>
                   <Menu
@@ -174,7 +181,7 @@ const Navbar = ({ backgroundColor, color }) => {
                   >
                     <MenuItem onClick={handleClose} component={Link} to="/underGraduate">Undergraduate</MenuItem>
                     <MenuItem onClick={handleClose} component={Link} to="/postGraduate">Postgraduate</MenuItem>
-                  </Menu>
+                  </Menu> */}
                 </MenuItem>
 
                 <MenuItem
@@ -208,7 +215,45 @@ const Navbar = ({ backgroundColor, color }) => {
             <Button color="inherit">Vocational Education</Button>
             <Button color="inherit">Corporate Connect</Button>
             <Button color="inherit">Skilling & Enterprise Solution</Button>
-            <Avatar sx={{ bgcolor: 'white', color: '#003285', ml: 2 }}>T</Avatar>
+            {/* <Avatar sx={{ bgcolor: 'white', color: '#003285', ml: 2 }}>T</Avatar> */}
+
+            <Link to="/login">
+        <Button
+          variant="outlined"
+          sx={{
+            bgcolor: 'white',
+            color: '#003285',
+            ml: 2,
+            '&:hover': {
+              bgcolor: '#003285',
+              color: 'white'
+            }
+          }}
+        >
+          Login
+        </Button>
+      </Link>
+
+      
+      <Link to="/register">
+        <Button
+          variant="outlined"
+          sx={{
+            bgcolor: 'white',
+            color: '#003285',
+            ml: 2,
+            '&:hover': {
+              bgcolor: '#003285',
+              color: 'white'
+            }
+          }}
+        >
+          Register
+        </Button>
+      </Link>
+
+    
+
           </>
         )}
       </Toolbar>

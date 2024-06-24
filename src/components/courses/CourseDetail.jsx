@@ -1,9 +1,11 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { Typography, Container, Box } from '@mui/material';
+import { Typography, Container, Box, Card, CardContent, Button, Grid, Tab, Tabs, Avatar } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import PersonIcon from '@mui/icons-material/Person';
+import Navbar from '../header/Navbar';
 import Footer from '../footer/Footer';
-import Navbar from '../header/Navbar'
 
 function getCourseDetails(id) {
   const courses = {
@@ -16,7 +18,9 @@ function getCourseDetails(id) {
     7: { id: 7, title: 'Short Term Management Course 1', image: 'https://images.pexels.com/photos/3184293/pexels-photo-3184293.jpeg?auto=compress&cs=tinysrgb&w=600', description: 'Description of Course 7', price: 500, duration: '2 months', rating: 4.7 },
     8: { id: 8, title: 'Short Term Management Course 2', image: 'https://images.pexels.com/photos/3184460/pexels-photo-3184460.jpeg?auto=compress&cs=tinysrgb&w=600', description: 'Description of Course 8', price: 600, duration: '2 months', rating: 4.9 },
     9: { id: 9, title: 'Short Term Management Course 3', image: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=600', description: 'Description of Course 9', price: 350, duration: '1 month', rating: 4.4 },
-    // Add more course details here...
+   10: { id: 10, title: 'Long Term Financial Course 1', image: 'https://images.pexels.com/photos/3184290/pexels-photo-3184290.jpeg?auto=compress&cs=tinysrgb&w=600', description: 'Description of Course 10', price: 700, duration: '3 months', rating: 4.6 },
+   11: { id: 11, title: 'Long Term Financial Course 2', image: 'https://images.pexels.com/photos/3184289/pexels-photo-3184289.jpeg?auto=compress&cs=tinysrgb&w=600', description: 'Description of Course 11', price: 800, duration: '4 months', rating: 4.7 },
+   12: { id: 12, title: 'Long Term Financial Course 3', image: 'https://images.pexels.com/photos/3184288/pexels-photo-3184288.jpeg?auto=compress&cs=tinysrgb&w=600', description: 'Description of Course 12', price: 900, duration: '5 months', rating: 4.8 },   
   };
   return courses[id] || {};
 }
@@ -24,25 +28,107 @@ function getCourseDetails(id) {
 function CourseDetails() {
   const { id } = useParams();
   const course = getCourseDetails(id);
+  const [tabValue, setTabValue] = React.useState(0);
+
+  const handleTabChange = (event, newValue) => {
+    setTabValue(newValue);
+  };
 
   return (
     <Box>
-      <Navbar/>
-    <Container>
-      <Typography variant="h4" gutterBottom>{course.title}</Typography>
-      {course.image && (
-        <img src={course.image} alt={course.title} style={{ width: '50%', height: '50', marginBottom: '1rem' }} />
-      )}
-      <Typography variant="body1" paragraph>{course.description}</Typography>
-      <Typography variant="body2" color="text.secondary">Price: ${course.price}</Typography>
-      <Typography variant="body2" color="text.secondary">Duration: {course.duration}</Typography>
-      <Box display="flex" alignItems="center" mt={1}>
-        <StarIcon color="primary" />
-        <Typography variant="body2" color="text.secondary" ml={0.5}>{course.rating}</Typography>
-      </Box>
-    </Container>
-      <Footer/>
+      <Navbar />
+      <Container>
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={8}>
+            <Box display="flex" alignItems="center">
+              {course.image && (
+                <img src={course.image} alt={course.title} style={{ width: '400px', height: '300px', marginRight: '1rem', marginTop:'2rem' }} />
+              )}
+              <Box>
+                <Typography variant="h4" gutterBottom>{course.title}</Typography>
+                <Typography variant="subtitle1" gutterBottom>By The Learn Skill</Typography>
+                <Typography variant="body2" color="text.secondary" display="flex" alignItems="center">
+                  <StarIcon color="primary" />
+                  {course.rating}
+                </Typography>
+              </Box>
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <Card sx={{marginTop:"5rem"}}>
+              <CardContent >
+                <Typography variant="h6" gutterBottom>Start Your Course</Typography>
+                <Typography variant="body2" color="text.secondary" display="flex" alignItems="center" gutterBottom>
+                  <AccessTimeIcon />
+                  {course.duration}
+                </Typography>
+                <Typography variant="body2" color="text.secondary" gutterBottom>
+                  Learn from Industry Experts
+                </Typography>
+                <Typography variant="body2" color="text.secondary" gutterBottom>
+                  Upskill for Career Growth
+                </Typography>
+                <Typography variant="body2" color="text.secondary" gutterBottom>
+                  Community Support
+                </Typography>
+                <Button variant="contained" color="primary" fullWidth>Start Course</Button>
+              </CardContent>
+            </Card>
+          </Grid>
+        </Grid>
+
+        <Box mt={4}>
+          <Tabs value={tabValue} onChange={handleTabChange} indicatorColor="primary" textColor="primary" centered>
+            <Tab label="Overview" />
+            <Tab label="Highlights" />
+            <Tab label="Eligibility Criteria" />
+          </Tabs>
+          <TabPanel value={tabValue} index={0}>
+            <Typography variant="body1" paragraph>
+              Overview content goes here...
+            </Typography>
+          </TabPanel>
+          <TabPanel value={tabValue} index={1}>
+            <Grid container spacing={2}>
+              {["Highlight 1", "Highlight 2", "Highlight 3", "Highlight 4", "Highlight 5"].map((highlight, index) => (
+                <Grid item xs={12} sm={4} key={index}>
+                  <Box display="flex" alignItems="center">
+                    <Avatar>{index + 1}</Avatar>
+                    <Typography variant="body1" ml={2}>{highlight}</Typography>
+                  </Box>
+                </Grid>
+              ))}
+            </Grid>
+          </TabPanel>
+          <TabPanel value={tabValue} index={2}>
+            <Typography variant="body1" paragraph>
+              Eligibility Criteria content goes here...
+            </Typography>
+          </TabPanel>
+        </Box>
+      </Container>
+      <Footer />
     </Box>
+  );
+}
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`tabpanel-${index}`}
+      aria-labelledby={`tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={3}>
+          {children}
+        </Box>
+      )}
+    </div>
   );
 }
 

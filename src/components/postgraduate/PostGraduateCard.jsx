@@ -1,11 +1,23 @@
-import React from 'react';
-import { Card, CardContent, CardMedia, Typography, Box, Button, IconButton } from '@mui/material';
+import React,{useState} from 'react';
+import { Card, CardContent, Dialog, DialogTitle ,DialogContent, CardMedia, Typography, Box, Button, IconButton } from '@mui/material';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import CollegeForm from '../forms/PostGraduate';
+
 
 const PostGraduateCard = ({ college }) => {
+
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
-    
+    <div>
     <Card sx={{ display: 'flex', marginBottom: 3, marginTop:3 ,marginLeft:2 }}>
      
       <CardMedia
@@ -36,12 +48,22 @@ const PostGraduateCard = ({ college }) => {
           <Typography variant="body2" color="text.secondary">
             Package: {college.package}
           </Typography>
-          <Button variant="contained" color="primary" sx={{ marginTop: 2 }}>
+          <Button variant="contained" color="primary" sx={{ marginTop: 2 }} onClick={handleClickOpen}>
             Apply Now
           </Button>
         </CardContent>
       </Box>
     </Card>
+    
+    <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
+        {/* <DialogTitle>Register with us</DialogTitle> */}
+        <DialogContent>
+          <CollegeForm />
+        </DialogContent>
+      </Dialog>
+    
+    </div>
+
   );
 };
 

@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import CourseCategory from './CourseCategory';
-import CourseFilter from './CoursesFilter';
-import { Container, Typography, Box } from '@mui/material';
+import Filters from './CoursesFilter'; // Import Filters component
+import { Container, Typography, Box, Grid } from '@mui/material';
 import Footer from '../footer/Footer';
 import Navbar from '../header/Navbar';
-// import Banner from '../header/Banner';
-
 const shortTermCourses = {
 financial: [
 { id: 1, title: 'Short Term Financial Course 1', image: 'https://images.pexels.com/photos/12425927/pexels-photo-12425927.jpeg?auto=compress&cs=tinysrgb&w=600', description: 'Description of Course 1', price: 100, duration: '1 month', rating: 4.5 },
@@ -43,53 +41,78 @@ management: [
 };
 
 function CoursesPage({ type }) {
-const [priceRange, setPriceRange] = useState([0, 2000]);
-const courses = type === 'short' ? shortTermCourses : longTermCourses;
+  const [priceRange, setPriceRange] = useState([0, 2000]);
+  const [durationRange, setDurationRange] = useState([1, 6]);
+  const courses = type === 'short' ? shortTermCourses : longTermCourses;
 
-return (
-<Box>
-<Navbar/>
-<Box
-      sx={{
-        width: '100%',
-        height: '400px',
-        backgroundColor: '#EEF7FF', // Replace with your image URL
-        color:'white',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-       <Typography variant="h2" sx={{ color: 'black' }}>
-        Welcome to Our Courses
-      </Typography>
+  const filteredCourses = useMemo(() => {
+    const filterCourses = (courses) =>
+      courses.filter(
+        (course) =>
+          course.price >= priceRange[0] &&
+          course.price <= priceRange[1] &&
+          parseFloat(course.duration) >= durationRange[0] &&
+          parseFloat(course.duration) <= durationRange[1]
+      );
 
-       <dotlottie-player
-    src="https://lottie.host/e4ce24ca-5108-4fe5-bd85-e25096f4125a/bDuRIjyOdk.json"
-    background="transparent"
-    speed="1"
-    style={{ width: '400px', height: '400px', marginLeft:'15rem' }}
-    loop
-    autoplay
-  ></dotlottie-player>
+    return {
+      financial: filterCourses(courses.financial),
+      technology: filterCourses(courses.technology),
+      management: filterCourses(courses.management),
+    };
+  }, [priceRange, durationRange, courses]);
 
-     
+  return (
+    <Box>
+      <Navbar />
+      <Box
+        sx={{
+          width: '100%',
+          height: '200px',
+          backgroundColor: '#003285',
+          color: 'white',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Typography variant="h2" sx={{ color: 'white', fontWeight: 'bold' }}>
+          Welcome to Our Courses
+        </Typography>
+        <dotlottie-player
+          src="https://lottie.host/e4ce24ca-5108-4fe5-bd85-e25096f4125a/bDuRIjyOdk.json"
+          background="transparent"
+          speed="1"
+          style={{ width: '250px', height: '250px', marginLeft: '15rem' }}
+          loop
+          autoplay
+        ></dotlottie-player>
+      </Box>
+      <Container>
+        <Typography variant="h4" gutterBottom marginTop="2rem" fontWeight="bold">
+          {type === 'short' ? 'Short Term Courses' : 'Long Term Courses'}
+        </Typography>
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={3}>
+            <Filters
+              priceRange={priceRange}
+              setPriceRange={setPriceRange}
+              durationRange={durationRange}
+              setDurationRange={setDurationRange}
+            />
+          </Grid>
+          <Grid item xs={12} md={9}>
+            <CourseCategory title="Financial Courses" courses={filteredCourses.financial} />
+            <CourseCategory title="Technology Courses" courses={filteredCourses.technology} />
+            <CourseCategory title="Management Courses" courses={filteredCourses.management} />
+          </Grid>
+        </Grid>
+      </Container>
+      <Footer />
     </Box>
-<Container>
-<Typography variant="h4" gutterBottom>
-{type === 'short' ? 'Short Term Courses' : 'Long Term Courses'}
-</Typography>
-<CourseFilter priceRange={priceRange} setPriceRange={setPriceRange} />
-<CourseCategory title="Financial Courses" courses={courses.financial} />
-<CourseCategory title="Technology Courses" courses={courses.technology} />
-<CourseCategory title="Project Management Courses" courses={courses.management} />
-</Container>
-<Footer/>
-</Box>
-);
+  );
 }
 
 export default CoursesPage;
-

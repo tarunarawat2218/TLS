@@ -1,74 +1,183 @@
 import React from 'react';
-import { Box, Grid, Typography, Paper } from '@mui/material';
 import { styled } from '@mui/system';
-import { Link } from 'react-router-dom';
+import { Box, Typography, Grid, useMediaQuery, useTheme } from '@mui/material';
+import {
+  School as UniversityIcon,
+  Assignment as CertificateIcon,
+  Build as ToolsIcon,
+  BusinessCenter as BuildingIcon,
+  SchoolOutlined as UserGraduateIcon,
+  HelpOutline as HandsHelpingIcon,
+  MenuBook as ChalkboardTeacherIcon,
+  Settings as CogIcon,
+} from '@mui/icons-material';
 
-const colors = ['#FFA500', '#1E90FF', '#FF4500', '#006400', '#32CD32', '#800080', '#008080', '#FFD700'];
-
-const FeatureItem = styled(Paper)(({ theme }) => ({
+const WaveBackground = styled('div')(({ theme }) => ({
   position: 'relative',
-  padding: theme.spacing(4),
-  justifyContent: 'center',
-  textAlign: 'center',
-  width: '20rem',
-  minHeight: '200px',
-  transition: 'transform 0.3s ease',
-
-  '&:hover': {
-    backgroundColor: '#f5f5f5',
-    transform: 'translateY(-5px)',
-  },
-
-  '&:hover:before': {
-    content: '""',
-    position: 'absolute',
-    bottom: 0,
-    left: '50%',
-    width: '100%',
-    height: '4px',
-    transform: 'translateX(-50%)',
+  height: '80vh',
+  overflow: 'hidden',
+  [theme.breakpoints.down('sm')]: {
+    height: '260vh', // Adjusted height for mobile view
   },
 }));
 
-const FeaturedTopics = () => {
-  const topics = [
-    { icon: 'https://data.themeim.com/html/tutorgo/assets/img/icons/man-cions.png', title: 'Management', link: '/management' },
-    { icon: 'https://data.themeim.com/html/tutorgo/assets/img/icons/code-cions.png', title: 'Programming', link: '/programming' },
-    { icon: 'https://data.themeim.com/html/tutorgo/assets/img/icons/bag-icon.png', title: 'Business', link: '/business' },
-    { icon: 'https://data.themeim.com/html/tutorgo/assets/img/icons/doller-icon.png', title: 'Finance', link: '/finance' },
-    { icon: 'https://data.themeim.com/html/tutorgo/assets/img/icons/cal-icon.png', title: 'Accounting', link: '/accounting' },
-    { icon: 'https://data.themeim.com/html/tutorgo/assets/img/icons/pen-icon.png', title: 'Content Writing', link: '/content-writing' },
-  ];
+const Wave = styled('div')({
+  position: 'absolute',
+  bottom: '0',
+  width: '100%',
+  height: '150px',
+});
+
+const ContentContainer = styled('div')({
+  position: 'relative',
+  zIndex: 1,
+  padding: '50px 20px',
+  textAlign: 'center',
+  color: 'black',
+});
+
+const BoxContainer = styled(Grid)(({ theme }) => ({
+  marginTop: '50px',
+  animation: 'slideIn 1s ease-in-out',
+  [theme.breakpoints.down('sm')]: {
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+}));
+
+const StyledBox = styled(Box)(({ theme }) => ({
+  textAlign: 'center',
+  padding: '4px',
+  margin: '10px',
+  borderRadius: '10px',
+  width: '15rem',
+  boxShadow: '0px 0px 10px #088395',
+  height: '200px',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  backgroundColor: 'white',
+  color: 'black',
+  [theme.breakpoints.down('sm')]: {
+    width: '15rem',
+    margin: '10px 0',
+    height: '200px',
+    boxSizing: 'border-box', // Ensure equal sizing
+  },
+}));
+
+const IconWrapper = styled(Box)({
+  marginTop: '30px',
+  width: '60px',
+  height: '60px',
+  borderRadius: '50%',
+  backgroundColor: '#088395',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  color: 'white',
+});
+
+const WhyJoinUs = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
-    <Box className="tp-feature__section pt-120 pb-30">
-      <Typography variant='h4' align="center" mb="2rem">
-        Popular Topic, Which are Most Favourite To Students
-      </Typography>
-      <Grid container spacing={3} justifyContent="center">
-        {topics.map((topic, index) => (
-          <Grid item xs={12} sm={6} md={3} key={index} sx={{ margin: '0.5rem' }}>
-            <Link to={topic.link} style={{ textDecoration: 'none' }}>
-              <FeatureItem
-                elevation={3}
-                sx={{
-                  '&:hover:before': {
-                    backgroundColor: colors[index % colors.length],
-                  },
-                }}
-              >
-                <img src={topic.icon} alt={topic.title} style={{ width: '40px', marginBottom: '20px' }} />
-                <Typography variant="h6" component="h3" sx={{ fontWeight: 'bold', mb: 1, color: 'inherit' }}>
-                  {topic.title}
-                </Typography>
-                <Typography variant="body2">400+ Course</Typography>
-              </FeatureItem>
-            </Link>
+    <WaveBackground>
+      <Wave />
+      <ContentContainer>
+        <Typography variant="h4" gutterBottom fontWeight='bold'>
+          Why Join Us?
+        </Typography>
+        <Typography variant="h6" align="center" paragraph>
+          We offer a comprehensive suite of services to help you achieve your educational and career goals.
+        </Typography>
+        <BoxContainer container spacing={2} justifyContent="center">
+          <Grid item xs={12} sm={6} md={2}>
+            <StyledBox>
+              <IconWrapper>
+                <UniversityIcon fontSize="large" />
+              </IconWrapper>
+              <Typography variant="h6" gutterBottom sx={{ marginTop: '1.2rem' }}>
+                University Admission
+              </Typography>
+            </StyledBox>
           </Grid>
-        ))}
-      </Grid>
-    </Box>
+          <Grid item xs={12} sm={6} md={2}>
+            <StyledBox>
+              <IconWrapper>
+                <CertificateIcon fontSize="large" />
+              </IconWrapper>
+              <Typography variant="h6" gutterBottom sx={{ marginTop: '1.2rem' }}>
+                Certification Programs
+              </Typography>
+            </StyledBox>
+          </Grid>
+          <Grid item xs={12} sm={6} md={2}>
+            <StyledBox>
+              <IconWrapper>
+                <ToolsIcon fontSize="large" />
+              </IconWrapper>
+              <Typography variant="h6" gutterBottom sx={{ marginTop: '1.2rem' }}>
+                Vocational Education
+              </Typography>
+            </StyledBox>
+          </Grid>
+          <Grid item xs={12} sm={6} md={2}>
+            <StyledBox>
+              <IconWrapper>
+                <BuildingIcon fontSize="large" />
+              </IconWrapper>
+              <Typography variant="h6" gutterBottom sx={{ marginTop: '1.2rem' }}>
+                Corporate Connect
+              </Typography>
+            </StyledBox>
+          </Grid>
+          <Grid item xs={12} sm={6} md={2}>
+            <StyledBox>
+              <IconWrapper>
+                <UserGraduateIcon fontSize="large" />
+              </IconWrapper>
+              <Typography variant="h6" gutterBottom sx={{ marginTop: '1.2rem' }}>
+                Internships
+              </Typography>
+            </StyledBox>
+          </Grid>
+          <Grid item xs={12} sm={6} md={2}>
+            <StyledBox>
+              <IconWrapper>
+                <HandsHelpingIcon fontSize="large" />
+              </IconWrapper>
+              <Typography variant="h6" gutterBottom sx={{ marginTop: '1.2rem' }}>
+                Industrial Workshops
+              </Typography>
+            </StyledBox>
+          </Grid>
+          <Grid item xs={12} sm={6} md={2}>
+            <StyledBox>
+              <IconWrapper>
+                <ChalkboardTeacherIcon fontSize="large" />
+              </IconWrapper>
+              <Typography variant="h6" gutterBottom sx={{ marginTop: '1.2rem' }}>
+                MDP/FDP
+              </Typography>
+            </StyledBox>
+          </Grid>
+          <Grid item xs={12} sm={6} md={2}>
+            <StyledBox>
+              <IconWrapper>
+                <CogIcon fontSize="large" />
+              </IconWrapper>
+              <Typography variant="h6" gutterBottom sx={{ marginTop: '1.2rem' }}>
+                Skilling and Enterprise
+              </Typography>
+            </StyledBox>
+          </Grid>
+        </BoxContainer>
+      </ContentContainer>
+    </WaveBackground>
   );
 };
 
-export default FeaturedTopics;
+export default WhyJoinUs;

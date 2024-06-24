@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, CssBaseline } from '@mui/material';
+import {  CssBaseline,Box, Container,Typography } from '@mui/material';
 import Navbar from './header/Navbar';
 import Footer from './footer/Footer';
 import CoursesGrid from './content/CoursesGrid';
@@ -8,6 +8,7 @@ import BenefitSection from './content/Content';
 import Header from './header/Header';
 import Partners from './header/Partners';
 import Boxes from './header/Boxes'
+import Testimonials from './content/Testimonial';
 
 const MainLayout = () => {
   return (
@@ -16,7 +17,7 @@ const MainLayout = () => {
      <Header/>
       <Partners/>
       <Boxes/>
-      <Box sx={{ marginTop:'2rem', width: '100%', minHeight: '100vh',  backgroundColor: '#EEF7FF' }}>
+      <Box sx={{ marginTop:'2rem', width: '100%', minHeight: '50vh' }}>
         <CssBaseline />
         <BenefitSection />
       </Box>
@@ -25,7 +26,13 @@ const MainLayout = () => {
         {/* <CoursesGrid /> */}
         <CollegesSlider />
       </Box>
-      
+      <Box>
+      <CssBaseline />
+      <Container>
+        
+        <Testimonials />
+      </Container>
+        </Box>
       <Footer />
     </main>
   );

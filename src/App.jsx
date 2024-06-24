@@ -27,7 +27,7 @@ const theme = createTheme({
     },
     
       typography :{
-      fontFamily:  "Noto Serif, serif",
+      fontFamily:  "Arimo, sans-serif",
       allvariants: {color:"white"},
     },
     
