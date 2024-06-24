@@ -1,5 +1,4 @@
 import React from "react";
-import FormatQuoteRoundedIcon from "@mui/icons-material/FormatQuoteRounded";
 import Slider from "react-slick";
 import {
   Box,
@@ -8,10 +7,11 @@ import {
   Typography,
   Avatar,
   Grid,
-  Icon,
 } from "@mui/material";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import StarIcon from '@mui/icons-material/Star';
+import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { styled } from "@mui/system";
 
 // Custom styling for slick dots
@@ -101,10 +101,20 @@ const TestimonialSlider = () => {
               marginBottom: "2rem",
             }}
           >
-          <img
-          src="https://wordpress-theme.spider-themes.net/zoomy/wp-content/uploads/2021/12/quote.svg"
-          sx={{ position: "absolute", top: 20, left: 80, transform: "rotate(180deg)", width: 50, height: 50 }}
-        />
+           <img
+              src="https://wordpress-theme.spider-themes.net/zoomy/wp-content/uploads/2021/12/quote.svg"
+              style={{
+                position: "absolute",
+                top: "10px",
+                left: "17rem",
+                transform: "rotate(180deg)",
+                width: "50px",
+                height: "50px",
+                
+                filter: "invert(40%) sepia(100%) saturate(5000%) hue-rotate(220deg) brightness(80%) contrast(120%)",
+              }}
+              alt="quote"
+            />
             <Grid container spacing={2} alignItems="center">
               <Grid
                 item
@@ -138,6 +148,13 @@ const TestimonialSlider = () => {
                   <Typography variant="subtitle1">
                     {testimonial.title}
                   </Typography>
+                  <Box>
+                    {[...Array(5)].map((_, index) => (
+                      index < testimonial.rating ? 
+                      <StarIcon key={index} sx={{ color: 'gold' }} /> : 
+                      <StarBorderIcon key={index} sx={{ color: 'gold' }} />
+                    ))}
+                  </Box>
                 </CardContent>
               </Grid>
             </Grid>
