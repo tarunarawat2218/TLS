@@ -13,7 +13,8 @@ import ManagementCourse from './components/pages/ManagementCourse';
 import Register from './components/user/Register'
 import VerifyOtp from './components/user/VerifyOtp';
 import Login from './components/user/Login';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
+import createTheme from "@mui/material/styles/createTheme";
 
 const theme = createTheme({
     breakpoints: {
@@ -51,7 +52,7 @@ function App() {
           {/* <Route path="/register" element={<Register />} /> */}
           <Route path="/register" element={<Register />} />
           <Route
-          path="/verifyOtp"
+          path="/verify-otp"
           element={otpPage ? <VerifyOtp /> : <Register setOtpPage={setOtpPage} />}
         />
         <Route path='/login' element={<Login/>} />

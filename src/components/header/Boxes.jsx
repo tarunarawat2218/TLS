@@ -51,7 +51,7 @@ const StyledBox = styled(Box)(({ theme }) => ({
   margin: '10px',
   borderRadius: '10px',
   width: '15rem',
-  boxShadow: '0px 0px 10px #088395',
+  boxShadow: '0px 0px 10px #F5DAD2',
   height: '200px',
   display: 'flex',
   flexDirection: 'column',
@@ -83,6 +83,17 @@ const WhyJoinUs = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
+  const items = [
+    { icon: <UniversityIcon fontSize="large" />, label: 'University Admission' },
+    { icon: <CertificateIcon fontSize="large" />, label: 'Certification Programs' },
+    { icon: <ToolsIcon fontSize="large" />, label: 'Vocational Education' },
+    { icon: <BuildingIcon fontSize="large" />, label: 'Corporate Connect' },
+    { icon: <UserGraduateIcon fontSize="large" />, label: 'Internships' },
+    { icon: <HandsHelpingIcon fontSize="large" />, label: 'Industrial Workshops' },
+    { icon: <ChalkboardTeacherIcon fontSize="large" />, label: 'MDP/FDP' },
+    { icon: <CogIcon fontSize="large" />, label: 'Skilling and Enterprise' },
+  ];
+
   return (
     <WaveBackground>
       <Wave />
@@ -94,86 +105,32 @@ const WhyJoinUs = () => {
           We offer a comprehensive suite of services to help you achieve your educational and career goals.
         </Typography>
         <BoxContainer container spacing={2} justifyContent="center">
-          <Grid item xs={12} sm={6} md={2}>
-            <StyledBox>
-              <IconWrapper>
-                <UniversityIcon fontSize="large" />
-              </IconWrapper>
-              <Typography variant="h6" gutterBottom sx={{ marginTop: '1.2rem' }}>
-                University Admission
-              </Typography>
-            </StyledBox>
-          </Grid>
-          <Grid item xs={12} sm={6} md={2}>
-            <StyledBox>
-              <IconWrapper>
-                <CertificateIcon fontSize="large" />
-              </IconWrapper>
-              <Typography variant="h6" gutterBottom sx={{ marginTop: '1.2rem' }}>
-                Certification Programs
-              </Typography>
-            </StyledBox>
-          </Grid>
-          <Grid item xs={12} sm={6} md={2}>
-            <StyledBox>
-              <IconWrapper>
-                <ToolsIcon fontSize="large" />
-              </IconWrapper>
-              <Typography variant="h6" gutterBottom sx={{ marginTop: '1.2rem' }}>
-                Vocational Education
-              </Typography>
-            </StyledBox>
-          </Grid>
-          <Grid item xs={12} sm={6} md={2}>
-            <StyledBox>
-              <IconWrapper>
-                <BuildingIcon fontSize="large" />
-              </IconWrapper>
-              <Typography variant="h6" gutterBottom sx={{ marginTop: '1.2rem' }}>
-                Corporate Connect
-              </Typography>
-            </StyledBox>
-          </Grid>
-          <Grid item xs={12} sm={6} md={2}>
-            <StyledBox>
-              <IconWrapper>
-                <UserGraduateIcon fontSize="large" />
-              </IconWrapper>
-              <Typography variant="h6" gutterBottom sx={{ marginTop: '1.2rem' }}>
-                Internships
-              </Typography>
-            </StyledBox>
-          </Grid>
-          <Grid item xs={12} sm={6} md={2}>
-            <StyledBox>
-              <IconWrapper>
-                <HandsHelpingIcon fontSize="large" />
-              </IconWrapper>
-              <Typography variant="h6" gutterBottom sx={{ marginTop: '1.2rem' }}>
-                Industrial Workshops
-              </Typography>
-            </StyledBox>
-          </Grid>
-          <Grid item xs={12} sm={6} md={2}>
-            <StyledBox>
-              <IconWrapper>
-                <ChalkboardTeacherIcon fontSize="large" />
-              </IconWrapper>
-              <Typography variant="h6" gutterBottom sx={{ marginTop: '1.2rem' }}>
-                MDP/FDP
-              </Typography>
-            </StyledBox>
-          </Grid>
-          <Grid item xs={12} sm={6} md={2}>
-            <StyledBox>
-              <IconWrapper>
-                <CogIcon fontSize="large" />
-              </IconWrapper>
-              <Typography variant="h6" gutterBottom sx={{ marginTop: '1.2rem' }}>
-                Skilling and Enterprise
-              </Typography>
-            </StyledBox>
-          </Grid>
+          {items.slice(0, 5).map((item, index) => (
+            <Grid item key={index} xs={12} sm={6} md={2}>
+              <StyledBox>
+                <IconWrapper>
+                  {item.icon}
+                </IconWrapper>
+                <Typography variant="h6" gutterBottom sx={{ marginTop: '1.2rem' }}>
+                  {item.label}
+                </Typography>
+              </StyledBox>
+            </Grid>
+          ))}
+        </BoxContainer>
+        <BoxContainer container spacing={2} justifyContent="center">
+          {items.slice(5).map((item, index) => (
+            <Grid item key={index} xs={12} sm={6} md={2}>
+              <StyledBox>
+                <IconWrapper>
+                  {item.icon}
+                </IconWrapper>
+                <Typography variant="h6" gutterBottom sx={{ marginTop: '1.2rem' }}>
+                  {item.label}
+                </Typography>
+              </StyledBox>
+            </Grid>
+          ))}
         </BoxContainer>
       </ContentContainer>
     </WaveBackground>

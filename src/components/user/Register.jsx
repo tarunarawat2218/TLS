@@ -8,6 +8,9 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
+import { useDispatch, useSelector } from 'react-redux';
+import { registerUser } from '../../redux/slice/userSlice';
+
 import { useSpring, animated } from '@react-spring/web';
 
 import { Grid } from '@mui/material';
@@ -27,6 +30,7 @@ const StyledForm = styled('form')({
   marginTop: 50,
 });
 
+
 const Register = ({ setOtpPage }) => {
   const [formData, setFormData] = useState({
     name: '',
@@ -36,22 +40,17 @@ const Register = ({ setOtpPage }) => {
     password: '',
   });
 
+  const dispatch = useDispatch();
+  const userStatus = useSelector((state) => state.user.status);
+  const userError = useSelector((state) => state.user.error);
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const res = await axios.post('/api/v1/auth/register', formData);
-      if (res.data.success) {
-        setOtpPage(true);
-      } else {
-        alert(res.data.message);
-      }
-    } catch (error) {
-      console.error('Error during registration', error);
-    }
+    dispatch(registerUser(formData)); // Dispatch registerUser action
   };
 
   const floatingAnimation1 = useSpring({
@@ -114,62 +113,62 @@ const Register = ({ setOtpPage }) => {
     config: { duration: 1000 },
   });
   return (
-    <Box style={{ position: 'relative', overflowY : 'hidden', backgroundColor: "#EEF7FF", minHeight: '100vh' }}>
-      
-        
-          <StyledCard>
-            <CardContent>
-              <Typography variant="h5" align="center" gutterBottom>
-                Logo
-              </Typography>
-              <Typography variant="h6" align="center" gutterBottom>
-                Welcome, create your account
-              </Typography>
-              <StyledForm onSubmit={handleSubmit}>
-                <TextField
-                  name="name"
-                  type="text"
-                  label="Name"
-                  variant="outlined"
-                  onChange={handleChange}
-                />
-                <TextField
-                  name="phone"
-                  type="text"
-                  label="Phone Number"
-                  variant="outlined"
-                  onChange={handleChange}
-                />
-                <TextField
-                  name="email"
-                  type="email"
-                  label="Email ID"
-                  variant="outlined"
-                  onChange={handleChange}
-                />
-                <TextField
-                  name="address"
-                  type="text"
-                  label="Address"
-                  variant="outlined"
-                  onChange={handleChange}
-                />
-                <TextField
-                  name="password"
-                  type="password"
-                  label="Password"
-                  variant="outlined"
-                  onChange={handleChange}
-                />
-                <Button variant="contained" color="primary" type="submit">
-                  Register
-                </Button>
-              </StyledForm>
-              <Typography variant="body2" color="textSecondary" style={{ marginTop: '2rem' }}>
-                Already have an account? <Link href="/login">Login</Link>
-              </Typography>
-            </CardContent>
-          </StyledCard>
+    <Box style={{ position: 'relative', overflowY: 'hidden', backgroundColor: "#EEF7FF", minHeight: '100vh' }}>
+      <StyledCard>
+        <CardContent>
+          <Typography variant="h5" align="center" gutterBottom>
+            Logo
+          </Typography>
+          <Typography variant="h6" align="center" gutterBottom>
+            Welcome, create your account
+          </Typography>
+          <StyledForm onSubmit={handleSubmit}>
+            <TextField
+              name="name"
+              type="text"
+              label="Name"
+              variant="outlined"
+              onChange={handleChange}
+            />
+            <TextField
+              name="phone"
+              type="text"
+              label="Phone Number"
+              variant="outlined"
+              onChange={handleChange}
+            />
+            <TextField
+              name="email"
+              type="email"
+              label="Email ID"
+              variant="outlined"
+              onChange={handleChange}
+            />
+            <TextField
+              name="address"
+              type="text"
+              label="Address"
+              variant="outlined"
+              onChange={handleChange}
+            />
+            <TextField
+              name="password"
+              type="password"
+              label="Password"
+              variant="outlined"
+              onChange={handleChange}
+            />
+            <Button variant="contained" color="primary" type="submit">
+              Register
+            </Button>
+          </StyledForm>
+          {userStatus === 'loading' && <Typography variant="body2" color="textSecondary" align="center">Registering...</Typography>}
+          {userError && <Typography variant="body2" color="error" align="center">{userError}</Typography>}
+          <Typography variant="body2" color="textSecondary" style={{ marginTop: '2rem' }}>
+            Already have an account? <Link href="/login">Login</Link>
+          </Typography>
+        </CardContent>
+      </StyledCard>
        
           <animated.div
         style={{
