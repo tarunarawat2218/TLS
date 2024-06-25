@@ -1,14 +1,16 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import UnderGraduateCard from './UnderGraduateCard';
 
 const CollegeList = ({ colleges }) => {
   return (
-    <Box>
+    <Grid container spacing={4}>
       {colleges.map((college) => (
-        <UnderGraduateCard key={college.id} college={college} />
+        <Grid item xs={12} sm={6} md={4} key={college.id}>
+          <UnderGraduateCard college={college} />
+        </Grid>
       ))}
-    </Box>
+    </Grid>
   );
 };
 

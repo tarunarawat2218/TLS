@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Box, Checkbox, FormControlLabel, FormGroup, Typography, Accordion, AccordionSummary, AccordionDetails, IconButton } from '@mui/material';
+import { Box, Checkbox, FormControlLabel, FormGroup, Typography, Accordion, AccordionSummary, AccordionDetails, Drawer, Button, IconButton } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import SchoolIcon from '@mui/icons-material/School';
 import PublicIcon from '@mui/icons-material/Public';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ExploreIcon from '@mui/icons-material/Explore';
+import FilterListIcon from '@mui/icons-material/FilterList';
 
 const FilterSidebar = ({ filters, handleFilterChange }) => {
   const [selectedState, setSelectedState] = useState('');
@@ -15,6 +16,7 @@ const FilterSidebar = ({ filters, handleFilterChange }) => {
   const [courseCollapsed, setCourseCollapsed] = useState(true);
   const [modeCollapsed, setModeCollapsed] = useState(true);
   const [typeCollapsed, setTypeCollapsed] = useState(true);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const states = [
     { name: 'Uttar Pradesh', cities: ['Lucknow', 'Kanpur', 'Varanasi'] },
@@ -32,8 +34,8 @@ const FilterSidebar = ({ filters, handleFilterChange }) => {
     handleFilterChange('city', ''); // Reset city when state changes
   };
 
-  return (
-    <Box sx={{ width: 350, padding: 4 }}>
+  const drawer = (
+    <Box sx={{ width: 350, padding: 2, marginLeft:'-2rem', marginTop:'2rem' }}>
       {/* Degree */}
       <Accordion expanded={!degreeCollapsed} onChange={() => setDegreeCollapsed(!degreeCollapsed)} sx={{ borderRadius: 4, marginBottom: 2 }}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content">
@@ -180,6 +182,22 @@ const FilterSidebar = ({ filters, handleFilterChange }) => {
         </AccordionDetails>
       </Accordion>
     </Box>
+  );
+
+  return (
+    <>
+      <Box sx={{ display: { xs: 'block', md: 'none' }, padding: 2 }}>
+        <Button variant="contained" startIcon={<FilterListIcon />} onClick={() => setMobileOpen(true)}>
+          Filters
+        </Button>
+        <Drawer anchor="left" open={mobileOpen} onClose={() => setMobileOpen(false)}>
+          {drawer}
+        </Drawer>
+      </Box>
+      <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+        {drawer}
+      </Box>
+    </>
   );
 };
 

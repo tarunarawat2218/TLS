@@ -14,7 +14,7 @@ import {
 
 const WaveBackground = styled('div')(({ theme }) => ({
   position: 'relative',
-  height: '80vh',
+  height: '100vh',
   overflow: 'hidden',
   [theme.breakpoints.down('sm')]: {
     height: '260vh', // Adjusted height for mobile view

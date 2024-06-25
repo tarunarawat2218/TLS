@@ -5,7 +5,7 @@ import Footer from '../footer/Footer';
 import Navbar from '../header/Navbar';
 
 const Banner = styled(Box)(({ theme }) => ({
-  backgroundColor: '#333f59',
+  backgroundColor: '#003285',
   color: 'white',
   textAlign: 'center',
   padding: theme.spacing(20, 0),
@@ -21,14 +21,14 @@ const Benefits = styled(Container)(({ theme }) => ({
 const BenefitBox = styled(Box)(({ theme }) => ({
   textAlign: 'center',
   padding: theme.spacing(2),
-  boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
+  boxShadow: '0px 4px 12px #F5DAD2',
   borderRadius: '8px',
   backgroundColor: 'white',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
-  width: '250px', // Adjusted width
+  width: '200px', // Adjusted width
   height: '150px', // Adjusted height
 }));
 
@@ -113,15 +113,15 @@ const InternshipPage = () => {
     <Box>
       <Navbar/>
       <Banner>
-        <Typography variant="h2">Internship Program 2024</Typography>
-        <Typography variant="h5">Ultimate Step towards your Career Goals</Typography>
+        <Typography variant="h3" fontWeight="bold">Internship Program 2024</Typography>
+        <Typography variant="h5">"Embark on Your Career Journey: Where Opportunities and Ambitions Collide!"</Typography>
         <Button variant="contained" color="secondary" sx={{ marginTop: 2 }} onClick={handleExploreClick}>
           Explore Internships
         </Button>
       </Banner>
 
       <Benefits>
-        <Typography variant="h4" align="center"  marginTop='2rem' gutterBottom>Internship Benefits</Typography>
+        <Typography variant="h4" align="center" fontWeight='bold'  marginTop='2rem' gutterBottom>Internship Benefits</Typography>
         <Grid container spacing={2} justifyContent="center" marginTop='2rem'>
           {benefits.map((benefit, index) => (
             <Grid item xs={12} sm={6} md={2} lg={2} key={index} display="flex" justifyContent="center">

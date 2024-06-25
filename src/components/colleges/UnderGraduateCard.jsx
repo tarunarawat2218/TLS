@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, CardContent, CardMedia, Typography, Box, Button, Dialog, DialogContent, DialogTitle, IconButton } from '@mui/material';
+import { Card, CardContent, CardMedia, Typography, Box, Button, Dialog, DialogContent, DialogTitle } from '@mui/material';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CollegeForm from '../forms/UnderGraduateForm';
@@ -16,37 +16,37 @@ const UnderGraduateCard = ({ college }) => {
   };
 
   return (
-    <div>
-      <Card sx={{ display: 'flex', marginBottom: 3, marginTop: 3, marginLeft: 2 }}>
+    <>
+      <Card sx={{marginTop:'2rem', marginBottom: 3, display: 'flex', flexDirection: 'column', height: '400px', width:'300px'}}>
         <CardMedia
           component="img"
-          sx={{ width: 250, height: 200, m: 2 }}
+          sx={{ height: 200 ,flexGrow: 1}}
           image={college.image}
           alt={college.name}
         />
-        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              {college.name}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              <CurrencyRupeeIcon sx={{ fontSize: 16, color: '#FFAF45' }} />
-              {college.fees}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              <LocationOnIcon sx={{ fontSize: 16, color: '#059212' }} />
-              {college.location}
-            </Typography>
-            <Typography variant="body2" color="textSecondary">
-              Course: {college.course}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Package: {college.package}
-            </Typography>
-            <Button variant="contained" color="primary" sx={{ marginTop: 2 }} onClick={handleClickOpen}>
-              Apply Now
-            </Button>
-          </CardContent>
+        <CardContent sx={{ flexGrow: 1 }}>
+          <Typography gutterBottom variant="h5" component="div">
+            {college.name}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            <CurrencyRupeeIcon sx={{ fontSize: 16, color: '#FFAF45' }} />
+            {college.fees}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            <LocationOnIcon sx={{ fontSize: 16, color: '#059212' }} />
+            {college.location}
+          </Typography>
+          <Typography variant="body2" color="textSecondary">
+            Course: {college.course}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Package: {college.package}
+          </Typography>
+        </CardContent>
+        <Box sx={{ padding: 2 }}>
+          <Button variant="contained" color="primary" fullWidth onClick={handleClickOpen}>
+            Apply Now
+          </Button>
         </Box>
       </Card>
 
@@ -56,7 +56,7 @@ const UnderGraduateCard = ({ college }) => {
           <CollegeForm />
         </DialogContent>
       </Dialog>
-    </div>
+    </>
   );
 };
 
