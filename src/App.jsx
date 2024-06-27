@@ -15,6 +15,9 @@ import VerifyOtp from './components/user/VerifyOtp';
 import Login from './components/user/Login';
 import { ThemeProvider } from '@mui/material/styles';
 import createTheme from "@mui/material/styles/createTheme";
+import CollegeDetails from './components/CollegeDetails/CollegeDetails';
+import UniversityPartnerships from './components/universityPartnership/UniversityPartnership';
+import VocationalEducation from './components/vocational Education/IndustrialCertificate';
 
 const theme = createTheme({
     breakpoints: {
@@ -34,6 +37,7 @@ const theme = createTheme({
     
 });
 
+
 function App() {
   const [otpPage, setOtpPage] = useState(false);
   return (
@@ -49,12 +53,16 @@ function App() {
           <Route path="/internship" element={<Internship />} />
           <Route path="/industrial-workshop" element={<IndustrialWorkshops />} />
           <Route path="/management" element={<ManagementCourse />} />
+          <Route path="/underGraduate/:id" element={<CollegeDetails />}  />
+          <Route path="/university-partnership" element={<UniversityPartnerships />}  />
           {/* <Route path="/register" element={<Register />} /> */}
           <Route path="/register" element={<Register />} />
-          <Route
+          <Route path="/vocational-education" element={<VocationalEducation />} />
+          {/* <Route
           path="/verify-otp"
           element={otpPage ? <VerifyOtp /> : <Register setOtpPage={setOtpPage} />}
-        />
+        /> */}
+         <Route path="/verify-otp" element={<VerifyOtp />} />
         <Route path='/login' element={<Login/>} />
         </Routes>
       </Router>

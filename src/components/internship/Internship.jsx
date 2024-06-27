@@ -12,7 +12,7 @@ const Banner = styled(Box)(({ theme }) => ({
 }));
 
 const Benefits = styled(Container)(({ theme }) => ({
-  marginTop: theme.spacing(50),
+  marginTop: theme.spacing(10),
   display: 'contents',
   justifyContent: 'center',
   gap: theme.spacing(2),
@@ -28,14 +28,16 @@ const BenefitBox = styled(Box)(({ theme }) => ({
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
-  width: '200px', // Adjusted width
-  height: '150px', // Adjusted height
+  width: '200px',
+  height: '150px',
 }));
 
 const FormContainer = styled(Container)(({ theme }) => ({
   marginTop: theme.spacing(10),
-  padding: theme.spacing(4),
-  backgroundColor: '#f5f5f5',
+  padding: theme.spacing(5),
+  
+  marginLeft: '3rem',
+  backgroundColor: 'white',
   borderRadius: '8px',
   boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
 }));
@@ -45,10 +47,9 @@ const FormField = styled(TextField)(({ theme }) => ({
 }));
 
 const benefits = [
-  // {title:'Virtual Mode', icon:'👨🏻‍💻'},
-  { title: 'Flexible Schedules', icon: '🕒' },
-  { title: 'Industry Approach', icon: '🏭' },
-  { title: 'Dedicated Mentor', icon: '👨‍🏫' },
+  // { title: 'Flexible Schedules', icon: '🕒' },
+  // { title: 'Industry Approach', icon: '🏭' },
+  // { title: 'Dedicated Mentor', icon: '👨‍🏫' },
   { title: 'Live Projects', icon: '📊' },
   { title: 'Multiple Technologies', icon: '💻' },
   { title: 'Dual Certification', icon: '📜' },
@@ -111,20 +112,28 @@ const InternshipPage = () => {
 
   return (
     <Box>
-      <Navbar/>
+      <Navbar />
       <Banner>
-        <Typography variant="h3" fontWeight="bold">Internship Program 2024</Typography>
+        <Typography variant="h3" fontWeight="bold">Internship and Industrial Program</Typography>
         <Typography variant="h5">"Embark on Your Career Journey: Where Opportunities and Ambitions Collide!"</Typography>
         <Button variant="contained" color="secondary" sx={{ marginTop: 2 }} onClick={handleExploreClick}>
           Explore Internships
         </Button>
       </Banner>
 
-      <Benefits>
-        <Typography variant="h4" align="center" fontWeight='bold'  marginTop='2rem' gutterBottom>Internship Benefits</Typography>
-        <Grid container spacing={2} justifyContent="center" marginTop='2rem'>
+      <Container sx={{ marginTop: 4 }}>
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={6}>
+          <Typography variant="h4"  fontWeight='bold' marginTop='2rem' gutterBottom>INTERNSHIP</Typography>
+
+            <Typography variant="h6">
+              Our internship program offers a unique opportunity to gain hands-on experience in your chosen field. Whether you're interested in artificial intelligence, sales, full stack development, or any other domain, we have something for everyone. Apply now and take the first step towards building a successful career.
+            </Typography>
+            <Benefits>
+        {/* <Typography variant="h4" align="center" fontWeight='bold' marginTop='2rem' gutterBottom>Internship Benefits</Typography> */}
+        <Grid container spacing={5} justifyContent="center" marginTop='2rem'>
           {benefits.map((benefit, index) => (
-            <Grid item xs={12} sm={6} md={2} lg={2} key={index} display="flex" justifyContent="center">
+            <Grid item xs={12} sm={6} md={2} lg={4} key={index} display="flex" justifyContent="center">
               <BenefitBox>
                 <Typography variant="h6">{benefit.icon}</Typography>
                 <Typography variant="subtitle1">{benefit.title}</Typography>
@@ -134,63 +143,149 @@ const InternshipPage = () => {
         </Grid>
       </Benefits>
 
-      <FormContainer ref={formRef} marginTop='10rem'>
-        <Grid container spacing={4} >
-          <Grid item xs={12} md={6}>
-            <Typography variant="h4" align="center">Apply for Internship</Typography>
-            <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-              <FormField
-                fullWidth
-                label="Name"
-                variant="outlined"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-              />
-              <FormField
-                fullWidth
-                label="Mobile Number"
-                variant="outlined"
-                name="mobileNumber"
-                value={formData.mobileNumber}
-                onChange={handleChange}
-              />
-              <FormField
-                fullWidth
-                label="Email ID"
-                variant="outlined"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-              />
-              <FormField
-                fullWidth
-                select
-                label="Interested Domain"
-                variant="outlined"
-                name="domain"
-                value={formData.domain}
-                onChange={handleChange}
-              >
-                {domains.map((domain, index) => (
-                  <MenuItem key={index} value={domain}>{domain}</MenuItem>
-                ))}
-              </FormField>
-              <Box display="flex" justifyContent="center">
-                <Button variant="contained" color="primary" type="submit">Submit</Button>
-              </Box>
-            </form>
           </Grid>
-          <Grid item xs={12} md={6} display="flex" justifyContent="center" alignItems="center">
-            <Box
-              component="img"
-              src="https://cdn.pixabay.com/photo/2021/09/07/20/28/woman-6604888_640.png"
-              alt="Internship"
-              sx={{ width: '100%', maxWidth: '400px', height: 'auto' }}
-            />
+          <Grid item xs={12} md={6}>
+            <FormContainer ref={formRef} >
+              <Typography variant="h4" align="center">Apply for Internship</Typography>
+              <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+                <FormField
+                  fullWidth
+                  label="Name"
+                  variant="outlined"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                />
+                <FormField
+                  fullWidth
+                  label="Mobile Number"
+                  variant="outlined"
+                  name="mobileNumber"
+                  value={formData.mobileNumber}
+                  onChange={handleChange}
+                />
+                <FormField
+                  fullWidth
+                  label="Email ID"
+                  variant="outlined"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+                <FormField
+                  fullWidth
+                  select
+                  label="Interested Domain"
+                  variant="outlined"
+                  name="domain"
+                  value={formData.domain}
+                  onChange={handleChange}
+                >
+                  {domains.map((domain, index) => (
+                    <MenuItem key={index} value={domain}>{domain}</MenuItem>
+                  ))}
+                </FormField>
+                <Box display="flex" justifyContent="center">
+                  <Button variant="contained" color="primary" type="submit">Submit</Button>
+                </Box>
+              </form>
+            </FormContainer>
           </Grid>
         </Grid>
-      </FormContainer>
+      </Container>
+
+      {/* <Benefits>
+        <Typography variant="h4" align="center" fontWeight='bold' marginTop='2rem' gutterBottom>Internship Benefits</Typography>
+        <Grid container spacing={5} justifyContent="center" marginTop='2rem'>
+          {benefits.map((benefit, index) => (
+            <Grid item xs={12} sm={6} md={2} lg={4} key={index} display="flex" justifyContent="center">
+              <BenefitBox>
+                <Typography variant="h6">{benefit.icon}</Typography>
+                <Typography variant="subtitle1">{benefit.title}</Typography>
+              </BenefitBox>
+            </Grid>
+          ))}
+        </Grid>
+      </Benefits> */}
+
+<Container sx={{ marginTop: 6 }}>
+        <Grid container spacing={4}>
+          
+          <Grid item xs={12} md={6}>
+            <FormContainer ref={formRef} sx={{marginRight :'-5rem'}}  >
+              <Typography variant="h4" align="center">Industrial Workshop</Typography>
+              <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+                <FormField
+                  fullWidth
+                  label="Name"
+                  variant="outlined"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                />
+                <FormField
+                  fullWidth
+                  label="Mobile Number"
+                  variant="outlined"
+                  name="mobileNumber"
+                  value={formData.mobileNumber}
+                  onChange={handleChange}
+                />
+                <FormField
+                  fullWidth
+                  label="Email ID"
+                  variant="outlined"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+                <FormField
+                  fullWidth
+                  select
+                  label="Interested Domain"
+                  variant="outlined"
+                  name="domain"
+                  value={formData.domain}
+                  onChange={handleChange}
+                >
+                  {domains.map((domain, index) => (
+                    <MenuItem key={index} value={domain}>{domain}</MenuItem>
+                  ))}
+                </FormField>
+                <Box display="flex" justifyContent="center">
+                  <Button variant="contained" color="primary" type="submit">Submit</Button>
+                </Box>
+              </form>
+            </FormContainer>
+          </Grid>
+
+          <Grid item xs={12} md={6}  >
+          <Typography variant="h4" marginLeft='4rem' fontWeight= 'bold'  marginTop='2rem' gutterBottom>INDUSTRIAL WORKSHOPS</Typography>
+
+          <Typography variant="h6" marginLeft='4rem'>
+             Our industrial workshops offer a hands-on approach to learning that bridges the gap between theoretical knowledge and practical application. Participants engage in real-world projects under the guidance of industry experts, gaining invaluable insights into current practices and emerging technologies. These workshops cover a range of topics from advanced manufacturing techniques to the latest in automation and digital transformation, providing attendees with the skills and knowledge necessary to excel in a rapidly evolving industrial landscape.
+             </Typography>
+          
+            {/* <Benefits> */}
+        {/* <Typography variant="h4" align="center" fontWeight='bold' marginTop='2rem' gutterBottom>Internship Benefits</Typography> */}
+        {/* <Grid container spacing={5} justifyContent="center" marginTop='2rem'>
+          {benefits.map((benefit, index) => (
+            <Grid item xs={12} sm={6} md={2} lg={4} key={index} display="flex" justifyContent="center">
+              <BenefitBox>
+                <Typography variant="h6">{benefit.icon}</Typography>
+                <Typography variant="subtitle1">{benefit.title}</Typography>
+              </BenefitBox>
+            </Grid>
+          ))}
+        </Grid>
+      </Benefits> */}
+
+          </Grid>
+        </Grid>
+      </Container>
+
+
+
 
       <Dialog open={dialogOpen} onClose={handleCloseDialog}>
         <DialogTitle>Congratulations 🎉🎊</DialogTitle>
@@ -211,7 +306,7 @@ const InternshipPage = () => {
           {alertMessage}
         </Alert>
       </Snackbar>
-      <Footer/>
+      <Footer />
     </Box>
   );
 };

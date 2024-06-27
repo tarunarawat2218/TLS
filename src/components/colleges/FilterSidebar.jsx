@@ -19,7 +19,7 @@ const FilterSidebar = ({ filters, handleFilterChange }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const states = [
-    { name: 'Uttar Pradesh', cities: ['Lucknow', 'Kanpur', 'Varanasi'] },
+    { name: 'Uttar Pradesh', cities: ['Lucknow', 'Kanpur', 'Varanasi','Noida'] },
     { name: 'Maharashtra', cities: ['Mumbai', 'Pune', 'Nagpur'] },
     // Add more states and cities here
   ];

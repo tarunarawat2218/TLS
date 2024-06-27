@@ -89,15 +89,15 @@ const Navbar = ({ backgroundColor, color }) => {
           </ListItem>
         </List>
         <ListItem button component={Link} to="/internship" onClick={handleDrawerToggle}>
-          <ListItemText primary="Internship" />
+          <ListItemText primary="Internship/Industrial" />
         </ListItem>
-        <ListItem button component={Link} to="/mdp-f" onClick={handleDrawerToggle}>
+        <ListItem button component={Link} to="" onClick={handleDrawerToggle}>
           <ListItemText primary="MDP/FDC" />
         </ListItem>
-        <ListItem button component={Link} to="/industrial-workshop" onClick={handleDrawerToggle}>
+        {/* <ListItem button component={Link} to="/industrial-workshop" onClick={handleDrawerToggle}>
           <ListItemText primary="Industrial Workshops" />
-        </ListItem>
-        <ListItem button component={Link} to="/university" onClick={handleDrawerToggle}>
+        </ListItem> */}
+        <ListItem button component={Link} to="/university-partnership" onClick={handleDrawerToggle}>
           <ListItemText primary="University Partnership" />
         </ListItem>
         <ListItem button component={Link} to="/vocational-education" onClick={handleDrawerToggle}>
@@ -108,6 +108,11 @@ const Navbar = ({ backgroundColor, color }) => {
         </ListItem>
         <ListItem button component={Link} to="/skilling-enterprise-solution" onClick={handleDrawerToggle}>
           <ListItemText primary="Skilling & Enterprise Solution" />
+        </ListItem>
+      </List>
+      <List>
+      <ListItem button  onClick={handleDrawerToggle}>
+          <ListItemText primary="Vocational Education" />
         </ListItem>
       </List>
     </div>
@@ -207,12 +212,12 @@ const Navbar = ({ backgroundColor, color }) => {
                 </MenuItem>
 
                 <MenuItem onClick={handleClose} component={Link} to="/internship">Internship</MenuItem>
-                <MenuItem onClick={handleClose} component={Link} to="/mdp-f">MDP/FDC</MenuItem>
-                <MenuItem onClick={handleClose} component={Link} to="/industrial-workshop">Industrial Workshops</MenuItem>
-                <MenuItem onClick={handleClose} component={Link} to="/university">University Partnership</MenuItem>
+                <MenuItem onClick={handleClose} component={Link} to="/">MDP/FDC</MenuItem>
+                {/* <MenuItem onClick={handleClose} component={Link} to="/industrial-workshop">Industrial Workshops</MenuItem> */}
+                <MenuItem onClick={handleClose} component={Link} to="/university-partnership">University Partnership</MenuItem>
               </Menu>
             </div>
-            <Button color="inherit">Vocational Education</Button>
+            <Button color="inherit" component={Link} to="/vocational-education">Vocational Education</Button>
             <Button color="inherit">Corporate Connect</Button>
             <Button color="inherit">Skilling & Enterprise Solution</Button>
             {/* <Avatar sx={{ bgcolor: 'white', color: '#003285', ml: 2 }}>T</Avatar> */}

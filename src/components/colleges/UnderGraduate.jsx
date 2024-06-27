@@ -1,18 +1,17 @@
+// UnderGraduate.js
 import React, { useState } from 'react';
-import { Box, Container, Typography, IconButton, useMediaQuery, Drawer } from '@mui/material';
+import { Box, Container, Typography, IconButton, useMediaQuery, Drawer, Grid } from '@mui/material';
+import { Link } from 'react-router-dom';
 import FilterSidebar from './FilterSidebar';
 import FilterListIcon from '@mui/icons-material/FilterList';
-import CollegeList from './CollegeList';
+import CollegeCard from './UnderGraduateCard';
 import Navbar from '../header/Navbar';
 import Footer from '../footer/Footer';
 
 const collegesData = [
-  { id: 1, name: 'MGM College', location: 'Lucknow', course: 'Course1', fees: '10000', package: '5 LPA', image: 'https://images.livemint.com/img/2021/07/29/600x338/b5af6ee0-ed4d-11eb-a043-f8aaa01a1d1e_1627242083337_1627556687642.jpg' },
-  { id: 2, name: 'JSS Technical Academy', location: 'Mumbai', course: 'Course2', fees: '15000', package: '6 LPA', image: 'https://images.shiksha.com/mediadata/images/articles/1663041749php0WJz5M.jpeg' },
-  { id: 3, name: 'JP', location: 'Mumbai', course: 'Course2', fees: '15000', package: '6 LPA', image: 'https://images.shiksha.com/mediadata/images/articles/1663041749php0WJz5M.jpeg' },
-  { id: 4, name: 'NIET', location: 'Mumbai', course: 'Course2', fees: '15000', package: '6 LPA', image: 'https://images.shiksha.com/mediadata/images/articles/1663041749php0WJz5M.jpeg' },
-  { id: 5, name: 'ITS', location: 'Mumbai', course: 'Course2', fees: '15000', package: '6 LPA', image: 'https://images.shiksha.com/mediadata/images/articles/1663041749php0WJz5M.jpeg' },
-  { id: 6, name: 'IMS', location: 'Mumbai', course: 'Course2', fees: '15000', package: '6 LPA', image: 'https://images.shiksha.com/mediadata/images/articles/1663041749php0WJz5M.jpeg' },
+  { id: 1, name: 'AKTU University', location: 'Lucknow', course: 'Course1', fees: '10000', package: '5 LPA', image: 'https://images.livemint.com/img/2021/07/29/600x338/b5af6ee0-ed4d-11eb-a043-f8aaa01a1d1e_1627242083337_1627556687642.jpg' },
+  { id: 2, name: 'Sharda University', location: 'Mumbai', course: 'Course2', fees: '15000', package: '6 LPA', image: 'https://images.shiksha.com/mediadata/images/articles/1663041749php0WJz5M.jpeg' },
+  { id: 3, name: 'Amity University', location: 'Noida', course: 'Course2', fees: '15000', package: '6 LPA', image: 'https://images.shiksha.com/mediadata/images/articles/1663041749php0WJz5M.jpeg' },
   // Add more colleges
 ];
 
@@ -89,19 +88,26 @@ const UnderGraduate = () => {
       <Container>
         {isMobile && (
           <IconButton onClick={handleDrawerToggle} sx={{ mb: 2 }}>
-          <FilterListIcon />
-        </IconButton>
+            <FilterListIcon />
+          </IconButton>
         )}
         <Box sx={{ display: 'flex', marginTop: 3, flexDirection: { xs: 'column', sm: 'row' } }}>
           {!isMobile && <FilterSidebar filters={filters} handleFilterChange={handleFilterChange} />}
           <Drawer anchor="left" open={mobileOpen} onClose={handleDrawerToggle}>
-          <Box sx={{ width: 250, p: 2 }}>
-
-            <FilterSidebar filters={filters} handleFilterChange={handleFilterChange} />
-         </Box>
+            <Box sx={{ width: 250, p: 2 }}>
+              <FilterSidebar filters={filters} handleFilterChange={handleFilterChange} />
+            </Box>
           </Drawer>
           <Box sx={{ flexGrow: 1, marginLeft: { xs: 0, sm: 3 } }}>
-            <CollegeList colleges={filteredColleges} />
+            <Grid container spacing={3}>
+              {filteredColleges.map((college) => (
+                <Grid item xs={12} sm={6} md={4} key={college.id}>
+                  <Link to={`/underGraduate/${college.id}`} style={{ textDecoration: 'none' }}>
+                    <CollegeCard college={college} />
+                  </Link>
+                </Grid>
+              ))}
+            </Grid>
           </Box>
         </Box>
       </Container>

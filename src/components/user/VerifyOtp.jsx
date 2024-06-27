@@ -1,59 +1,52 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import Alert from '@mui/material/Alert';
-import { Card, CardContent, Typography, TextField, Button, Box } from '@mui/material';
+import { TextField, Button, Typography, Card, CardContent, Box } from '@mui/material';
+import { verifyOtp } from '../../redux/slice/userSlice';
 
 const VerifyOtp = () => {
   const [otp, setOtp] = useState('');
-  const [showAlert, setShowAlert] = useState(false);
-  const [error, setError] = useState('');
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const userStatus = useSelector((state) => state.user.status);
+  const userError = useSelector((state) => state.user.error);
 
   const handleChange = (e) => {
     setOtp(e.target.value);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      const res = await axios.post('/api/v1/auth/verify-otp', { otp });
-      if (res.data.success) {
-        setShowAlert(true);
-        setTimeout(() => {
-          navigate('/login');
-        }, 2000);
-      } else {
-        setError(res.data.message);
+    dispatch(verifyOtp(otp)).then((action) => {
+      if (action.meta.requestStatus === 'fulfilled') {
+        navigate('/dashboard');
       }
-    } catch (error) {
-      setError('Error during OTP verification');
-    }
+    });
   };
 
   return (
-    <Box style={{ position: 'relative', overflowY: 'hidden', backgroundColor: "#EEF7FF", minHeight: '100vh' }}>
-      <Card style={{ maxWidth: 400, margin: 'auto', marginTop: 100, padding: 20 }}>
+    <Box style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
+      <Card>
         <CardContent>
           <Typography variant="h5" align="center" gutterBottom>
             Verify OTP
           </Typography>
-          {showAlert && <Alert severity="success">Registration successful</Alert>}
-          {error && <Alert severity="error">{error}</Alert>}
           <form onSubmit={handleSubmit}>
             <TextField
               name="otp"
               type="text"
-              label="Enter OTP"
+              label="OTP"
               variant="outlined"
+              value={otp}
               onChange={handleChange}
               fullWidth
-              margin="normal"
             />
-            <Button variant="contained" color="primary" type="submit" fullWidth>
+            <Button variant="contained" color="primary" type="submit" fullWidth style={{ marginTop: '1rem' }}>
               Verify
             </Button>
           </form>
+          {userStatus === 'loading' && <Typography variant="body2" color="textSecondary" align="center">Verifying...</Typography>}
+          {userError && <Typography variant="body2" color="error" align="center">{userError}</Typography>}
         </CardContent>
       </Card>
     </Box>

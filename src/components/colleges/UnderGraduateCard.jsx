@@ -3,9 +3,17 @@ import { Card, CardContent, CardMedia, Typography, Box, Button, Dialog, DialogCo
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CollegeForm from '../forms/UnderGraduateForm';
+import { useNavigate } from 'react-router-dom';
+
 
 const UnderGraduateCard = ({ college }) => {
   const [open, setOpen] = useState(false);
+  
+    const navigate = useNavigate();
+  
+    const handleViewDetails = () => {
+      navigate(`/underGraduate/${college.id}`);
+    };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -17,7 +25,7 @@ const UnderGraduateCard = ({ college }) => {
 
   return (
     <>
-      <Card sx={{marginTop:'2rem', marginBottom: 3, display: 'flex', flexDirection: 'column', height: '400px', width:'300px'}}>
+      <Card sx={{marginTop:'2rem', marginBottom: 3, display: 'flex', flexDirection: 'column', height: '400px', width:'250px'}}>
         <CardMedia
           component="img"
           sx={{ height: 200 ,flexGrow: 1}}
@@ -25,7 +33,7 @@ const UnderGraduateCard = ({ college }) => {
           alt={college.name}
         />
         <CardContent sx={{ flexGrow: 1 }}>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h5" component="div" onClick={handleViewDetails}>
             {college.name}
           </Typography>
           <Typography variant="body2" color="text.secondary">
@@ -47,6 +55,7 @@ const UnderGraduateCard = ({ college }) => {
           <Button variant="contained" color="primary" fullWidth onClick={handleClickOpen}>
             Apply Now
           </Button>
+          
         </Box>
       </Card>
 
