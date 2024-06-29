@@ -1,44 +1,86 @@
-import React, { useState } from 'react';
-import { TextField, MenuItem, FormControlLabel, Checkbox, Button, Box, Typography } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { TextField, Button, Box, Typography } from '@mui/material';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { submitForm } from '../../redux/slice/formSlice';
 
-const RegistrationForm = () => {
+const RegistrationForm = ({ collegeName }) => {
   const [formData, setFormData] = useState({
     name: '',
     phoneNumber: '',
-    email: '',
-    preferredStream: '',
-    needHelp: false,
+    emailId: '',
+    collegeName: '',
+    twelfthPercentage: '',
+    location: '',
   });
 
+  const [isSubmitted, setIsSubmitted] = useState(false); // Track form submission
+
+  const dispatch = useDispatch();
+  const { loading, error } = useSelector((state) => state.form);
+
+  useEffect(() => {
+    if (collegeName) {
+      setFormData((prevData) => ({
+        ...prevData,
+        collegeName,
+      }));
+    }
+  }, [collegeName]);
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+    }
+  }, [error]);
+
+  useEffect(() => {
+    if (isSubmitted && !loading && !error) {
+      toast.success('Form submitted successfully');
+      setFormData({
+        name: '',
+        phoneNumber: '',
+        emailId: '',
+        collegeName: '',
+        twelfthPercentage: '',
+        location: '',
+      });
+      setIsSubmitted(false); // Reset submission state
+    }
+  }, [loading, error, isSubmitted]);
+
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: type === 'checkbox' ? checked : value,
+      [name]: value,
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log(formData);
+    if (!formData.name || !formData.phoneNumber || !formData.emailId || !formData.collegeName || !formData.twelfthPercentage || !formData.location) {
+      toast.error('Please fill in all fields');
+      return;
+    }
+    setIsSubmitted(true); // Mark form as submitted
+    dispatch(submitForm(formData));
   };
-
-  const streamOptions = [
-    'Engineering',
-    'Medical',
-    'Commerce',
-    'Arts',
-    'Science',
-    'Management',
-    // Add more options as needed
-  ];
 
   return (
     <Box
       component="form"
       onSubmit={handleSubmit}
-      sx={{ display: 'flex', flexDirection: 'column', gap: 2, maxWidth: 400, mx: 'auto', mt: 2, mb:5 }}
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 2,
+        maxWidth: 400,
+        mx: 'auto',
+        marginTop: 2,
+        marginBottom: 5,
+      }}
     >
       <Typography variant="h4" component="h1" gutterBottom>
         Register with us
@@ -61,39 +103,39 @@ const RegistrationForm = () => {
       />
       <TextField
         label="Email ID"
-        name="email"
-        value={formData.email}
+        name="emailId"
+        value={formData.emailId}
         onChange={handleChange}
         fullWidth
         required
       />
       <TextField
-        select
-        label="Preferred Stream"
-        name="preferredStream"
-        value={formData.preferredStream}
+        label="College Name"
+        name="collegeName"
+        value={formData.collegeName}
         onChange={handleChange}
         fullWidth
         required
-      >
-        {streamOptions.map((option) => (
-          <MenuItem key={option} value={option}>
-            {option}
-          </MenuItem>
-        ))}
-      </TextField>
-      <FormControlLabel
-        control={
-          <Checkbox
-            name="needHelp"
-            checked={formData.needHelp}
-            onChange={handleChange}
-          />
-        }
-        label="Need help to choose the right college?"
+        disabled
       />
-      <Button type="submit" variant="contained" color="primary">
-        Submit
+      <TextField
+        label="12th Marks"
+        name="twelfthPercentage"
+        value={formData.twelfthPercentage}
+        onChange={handleChange}
+        fullWidth
+        required
+      />
+      <TextField
+        label="Location"
+        name="location"
+        value={formData.location}
+        onChange={handleChange}
+        fullWidth
+        required
+      />
+      <Button type="submit" variant="contained" color="primary" disabled={loading}>
+        {loading ? 'Submitting...' : 'Submit'}
       </Button>
     </Box>
   );

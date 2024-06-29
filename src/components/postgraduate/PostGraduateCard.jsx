@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import { Card, CardContent, Dialog, DialogTitle ,DialogContent, CardMedia, Typography, Box, Button, IconButton } from '@mui/material';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import CollegeForm from '../forms/PostGraduate';
+// import CollegeForm from '../forms/PostGraduate';
 
 
 const PostGraduateCard = ({ college }) => {

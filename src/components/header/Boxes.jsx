@@ -88,8 +88,8 @@ const WhyJoinUs = () => {
     { icon: <CertificateIcon fontSize="large" />, label: 'Certification Programs' },
     { icon: <ToolsIcon fontSize="large" />, label: 'Vocational Education' },
     { icon: <BuildingIcon fontSize="large" />, label: 'Corporate Connect' },
-    { icon: <UserGraduateIcon fontSize="large" />, label: 'Internships' },
-    { icon: <HandsHelpingIcon fontSize="large" />, label: 'Industrial Workshops' },
+    { icon: <UserGraduateIcon fontSize="large" />, label: 'Internships and Industrial Programs' },
+    { icon: <HandsHelpingIcon fontSize="large" />, label: 'Job Support' },
     { icon: <ChalkboardTeacherIcon fontSize="large" />, label: 'MDP/FDP' },
     { icon: <CogIcon fontSize="large" />, label: 'Skilling and Enterprise' },
   ];

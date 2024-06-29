@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Typography, Container, Box, Card, CardContent, Button, Grid, Tab, Tabs, Avatar } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
@@ -6,6 +6,7 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import PersonIcon from '@mui/icons-material/Person';
 import Navbar from '../header/Navbar';
 import Footer from '../footer/Footer';
+import InquiryForm from '../forms/ShortCoursesForm';
 
 function getCourseDetails(id) {
   const courses = {
@@ -29,9 +30,18 @@ function CourseDetails() {
   const { id } = useParams();
   const course = getCourseDetails(id);
   const [tabValue, setTabValue] = React.useState(0);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const handleTabChange = (event, newValue) => {
     setTabValue(newValue);
+  };
+
+  const handleOpenModal = () => {
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
   };
 
   return (
@@ -42,7 +52,7 @@ function CourseDetails() {
           <Grid item xs={12} sm={8}>
             <Box display="flex" alignItems="center">
               {course.image && (
-                <img src={course.image} alt={course.title} style={{ width: '400px', height: '300px', marginRight: '1rem', marginTop:'2rem' }} />
+                <img src={course.image} alt={course.title} style={{ width: '400px', height: '300px', marginRight: '1rem', marginTop: '2rem' }} />
               )}
               <Box>
                 <Typography variant="h4" gutterBottom>{course.title}</Typography>
@@ -55,8 +65,8 @@ function CourseDetails() {
             </Box>
           </Grid>
           <Grid item xs={12} sm={4}>
-            <Card sx={{marginTop:"5rem"}}>
-              <CardContent >
+            <Card sx={{ marginTop: "5rem" }}>
+              <CardContent>
                 <Typography variant="h6" gutterBottom>Start Your Course</Typography>
                 <Typography variant="body2" color="text.secondary" display="flex" alignItems="center" gutterBottom>
                   <AccessTimeIcon />
@@ -71,7 +81,9 @@ function CourseDetails() {
                 <Typography variant="body2" color="text.secondary" gutterBottom>
                   Community Support
                 </Typography>
-                <Button variant="contained" color="primary" fullWidth>Start Course</Button>
+                <Button variant="contained" color="primary" fullWidth onClick={handleOpenModal}>
+                  Start Course
+                </Button>
               </CardContent>
             </Card>
           </Grid>
@@ -108,6 +120,8 @@ function CourseDetails() {
         </Box>
       </Container>
       <Footer />
+
+      <InquiryForm open={modalOpen} handleClose={handleCloseModal} />
     </Box>
   );
 }

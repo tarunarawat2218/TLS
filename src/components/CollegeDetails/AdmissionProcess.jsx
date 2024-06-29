@@ -36,8 +36,20 @@ const AdmissionProcess = ({ process, ongoing }) => {
             <TableCell fontWeight='bold'>52+ Courses with multiple specialization</TableCell>
         </TableRow>
         <TableRow>
-        <TableCell fontWeight='bold'>Programmes Off</TableCell>
-            <TableCell fontWeight='bold'>52+ Courses with multiple specialization</TableCell>
+        <TableCell fontWeight='bold'>How to Apply </TableCell>
+            <TableCell fontWeight='bold'> Click on Apply Now button </TableCell>
+        </TableRow>
+        <TableRow>
+        <TableCell fontWeight='bold'>Levels of Programmes Offered </TableCell>
+            <TableCell fontWeight='bold'> Undergraduate , Postgraduate </TableCell>
+        </TableRow>
+        <TableRow>
+        <TableCell fontWeight='bold'>Levels of Programmes Offered </TableCell>
+            <TableCell fontWeight='bold'> Undergraduate , Postgraduate </TableCell>
+        </TableRow>
+        <TableRow>
+        <TableCell fontWeight='bold'> Popular Programmes</TableCell>
+            <TableCell fontWeight='bold'> B.Tech , BCA, B.Com </TableCell>
         </TableRow>
         </TableBody>
       </Table>

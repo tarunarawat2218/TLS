@@ -11,13 +11,15 @@ import Internship from './components/internship/Internship';
 import IndustrialWorkshops from './components/Industrial/IndustrialWorkshop';
 import ManagementCourse from './components/pages/ManagementCourse';
 import Register from './components/user/Register'
-import VerifyOtp from './components/user/VerifyOtp';
+// import VerifyOtp from './components/user/VerifyOtp';
 import Login from './components/user/Login';
 import { ThemeProvider } from '@mui/material/styles';
 import createTheme from "@mui/material/styles/createTheme";
 import CollegeDetails from './components/CollegeDetails/CollegeDetails';
 import UniversityPartnerships from './components/universityPartnership/UniversityPartnership';
 import VocationalEducation from './components/vocational Education/IndustrialCertificate';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const theme = createTheme({
     breakpoints: {
@@ -42,6 +44,7 @@ function App() {
   const [otpPage, setOtpPage] = useState(false);
   return (
     <ThemeProvider theme={theme}>
+       <ToastContainer />
       <Router>
         <Routes>
           <Route path="/" element={<MainLayout />} />
@@ -62,7 +65,7 @@ function App() {
           path="/verify-otp"
           element={otpPage ? <VerifyOtp /> : <Register setOtpPage={setOtpPage} />}
         /> */}
-         <Route path="/verify-otp" element={<VerifyOtp />} />
+         {/* <Route path="/verify-otp" element={<VerifyOtp />} /> */}
         <Route path='/login' element={<Login/>} />
         </Routes>
       </Router>

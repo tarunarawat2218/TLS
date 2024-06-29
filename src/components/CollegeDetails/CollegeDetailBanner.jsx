@@ -47,7 +47,7 @@ const CollegeDetailsBanner = ({ college }) => {
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
         <DialogTitle>Register with us</DialogTitle>
         <DialogContent>
-          <CollegeForm />
+          <CollegeForm collegeName={college.name} />
         </DialogContent>
       </Dialog>
     </>

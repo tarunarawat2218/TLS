@@ -40,11 +40,11 @@ const BenefitSection = () => {
           <ListItemText primary="Access more than 1M online videos" />
         </ListItem>
       </List>
-      <Box className="tp-hero__btn-wrapper">
+      {/* <Box className="tp-hero__btn-wrapper">
         <Button variant="outlined" href="about-us.html" className="tp-border-btn br-0">
           Get Started
         </Button>
-      </Box>
+      </Box> */}
     </div>
   );
 

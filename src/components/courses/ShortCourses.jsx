@@ -72,33 +72,40 @@ function CoursesPage({ type }) {
       <Box
         sx={{
           width: '100%',
-          height: '200px',
+          height: { xs: 'auto', sm: '200px' },
           backgroundColor: '#003285',
           color: 'white',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           display: 'flex',
+          flexDirection: { xs: 'column', sm: 'row' },
           alignItems: 'center',
           justifyContent: 'center',
+          padding: 2,
         }}
       >
-        <Typography variant="h4" sx={{ color: 'white', fontWeight: 'bold' }}>
-        "Unlock Your Potential with Our Expert-Led Courses"
+        <Typography variant="h4" sx={{ color: 'white', fontWeight: 'bold',  
+            color: 'white',
+            fontWeight: 'bold',
+            textAlign: { xs: 'center', sm: 'center' },
+            marginBottom: { xs: 2, sm: 0 },
+           }}>
+          "Unlock Your Potential with Our Expert-Led Courses"
         </Typography>
         <dotlottie-player
           src="https://lottie.host/e4ce24ca-5108-4fe5-bd85-e25096f4125a/bDuRIjyOdk.json"
           background="transparent"
           speed="1"
-          style={{ width: '250px', height: '250px', marginLeft: '15rem' }}
           loop
           autoplay
-        ></dotlottie-player>
+          style={{ width: '300px', height: '300px', marginLeft: { xs: 0, sm: '15rem' }, display: { xs: 'none', sm: 'block' } }}
+          ></dotlottie-player>
       </Box>
       <Container>
-        <Typography variant="h4" gutterBottom marginTop="2rem" fontWeight="bold" marginLeft="19rem">
+        <Typography variant="h4" gutterBottom marginTop="2rem" marginRight="18rem" fontWeight="bold" textAlign="center">
           {type === 'short' ? 'Short Term Courses' : 'Long Term Courses'}
         </Typography>
-        <Grid container spacing={4}>
+        <Grid container spacing={4} justifyContent="center">
           <Grid item xs={12} md={3}>
             <Filters
               priceRange={priceRange}

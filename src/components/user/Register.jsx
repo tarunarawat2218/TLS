@@ -51,7 +51,7 @@ const Register = ({ setOtpPage }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(registerUser(formData)).then(() => {
-      navigate('/verify-otp');
+      navigate('/');
     });
   };
   

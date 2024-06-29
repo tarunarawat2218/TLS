@@ -20,29 +20,21 @@ const handleApiError = (error) => {
   }
 };
 
-export const registerUserApi = async (userData) => {
+export const submitForm = async (formData) => {
   try {
-    console.log('Registering user with data:', userData);
-    const response = await api.post('/auth/register', userData);
+    const token = localStorage.getItem('token'); // Retrieve token from localStorage
+    if (!token) {
+      throw new Error('No token found');
+    }
+
+    const response = await api.post('/ug/submit-form', formData, {
+      headers: {
+        Authorization: `Bearer ${token}`, // Send token in Authorization header
+      },
+    });
     return response.data;
   } catch (error) {
     handleApiError(error);
   }
 };
-
-export const loginUserApi = async (credentials) => {
-  try {
-    const response = await api.post('/auth/login', credentials);
-    const { token } = response.data;
-    localStorage.setItem('token', token); // Save token to localStorage
-    
-console.log('Token:', token);
-
-    return response.data;
-  } catch (error) {
-    handleApiError(error);
-  }
-};
-
-
 

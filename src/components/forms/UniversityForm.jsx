@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
 import { Modal, Box, Typography, TextField, Button } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+import { submitUniversityPartnershipForm } from '../../redux/slice/universitySlice';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const InquiryForm = ({ open, handleClose }) => {
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.user.user.token); // Ensure correct path to token
+
   const [formData, setFormData] = useState({
-    universityName: '',
+    companyName: '',
     name: '',
-    email: '',
+    emailId: '',
+    phoneNumber: '',
     comments: ''
   });
 
@@ -20,19 +26,14 @@ const InquiryForm = ({ open, handleClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { universityName, name, email, comments } = formData;
+    const { companyName, name, emailId, phoneNumber, comments } = formData;
 
-    if (!universityName || !name || !email || !comments) {
+    if (!companyName || !name || !emailId || !phoneNumber || !comments) {
       toast.error('Please complete all fields');
+    } else if (!token) {
+      toast.error('User not authenticated');
     } else {
-      toast.success('Form submitted successfully');
-      // Clear the form
-      setFormData({
-        universityName: '',
-        name: '',
-        email: '',
-        comments: ''
-      });
+      dispatch(submitUniversityPartnershipForm({ formData, token }));
       handleClose();
     }
   };
@@ -59,10 +60,10 @@ const InquiryForm = ({ open, handleClose }) => {
           <form onSubmit={handleSubmit}>
             <TextField
               label="University Name"
-              name="universityName"
+              name="companyName"
               fullWidth
               margin="normal"
-              value={formData.universityName}
+              value={formData.companyName}
               onChange={handleChange}
             />
             <TextField
@@ -74,11 +75,19 @@ const InquiryForm = ({ open, handleClose }) => {
               onChange={handleChange}
             />
             <TextField
-              label="Email"
-              name="email"
+              label="Email Id"
+              name="emailId"
               fullWidth
               margin="normal"
-              value={formData.email}
+              value={formData.emailId}
+              onChange={handleChange}
+            />
+            <TextField
+              label="Phone Number"
+              name="phoneNumber"
+              fullWidth
+              margin="normal"
+              value={formData.phoneNumber}
               onChange={handleChange}
             />
             <TextField

@@ -116,7 +116,7 @@ const Banner = () => {
             >
               {/* Optional additional text can go here */}
             </Typography>
-            <Button variant="contained" sx={{ ml: { xs: 2, md: 22 } }}>
+            <Button variant="contained" href="/all-courses" sx={{ ml: { xs: 2, md: 22 } }}>
               Explore Courses
             </Button>
           </animated.div>

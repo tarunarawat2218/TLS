@@ -101,7 +101,7 @@ const TestimonialSlider = () => {
               marginBottom: "2rem",
             }}
           >
-           <img
+           {/* <img
               src="https://wordpress-theme.spider-themes.net/zoomy/wp-content/uploads/2021/12/quote.svg"
               style={{
                 position: "absolute",
@@ -114,7 +114,7 @@ const TestimonialSlider = () => {
                 filter: "invert(40%) sepia(100%) saturate(5000%) hue-rotate(220deg) brightness(80%) contrast(120%)",
               }}
               alt="quote"
-            />
+            /> */}
             <Grid container spacing={2} alignItems="center">
               <Grid
                 item
