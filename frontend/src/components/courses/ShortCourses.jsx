@@ -84,7 +84,7 @@ function CoursesPage({ type }) {
           padding: 2,
         }}
       >
-        <Typography variant="h4" sx={{ color: 'white', fontWeight: 'bold',  
+        <Typography variant="h4" sx={{ 
             color: 'white',
             fontWeight: 'bold',
             textAlign: { xs: 'center', sm: 'center' },
